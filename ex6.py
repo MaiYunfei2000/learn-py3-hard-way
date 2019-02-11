@@ -1,3 +1,5 @@
+# 在此练习中进一步巩固了ex5所学的f-string。并新接触了.format函数。可是没能搞懂它的用法和作用。
+
 types_of_people = 10
 x = f"There are {types_of_people} types of people."
 
@@ -19,7 +21,7 @@ hilarious = "False"
 joke_evaluation = "Isn't that joke so fuuny?! {}"
 # 吐槽：BTW，我看不懂这个冷笑话……还是说，这里我连"joke"都理解错了。
 
-# 此行代码的作用目前还是搞不懂。
+# 此行代码的作用目前还是搞不明白。
 print(joke_evaluation.format(hilarious))
 
 w = "This is the left side of..."
