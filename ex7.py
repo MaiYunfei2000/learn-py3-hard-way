@@ -9,7 +9,7 @@
 print("Mary had a little lamb.")
 # 目前看来，.format就像是f-string的另一个版本。
 # 「格式化」到底是什么意思呢？
-print("Its fleece was white as {}.".format('snow'))
+print("Its fleece was white as {}.".format('snow')) # 注意.format要在print函数里。并且被填充的括号必须在字符串也就是引号内。
 print("And everywhere that Mary went.") # "还有玛丽去的每一个地方。"?
 print("." * 10) # What'd that do? 重复生成字符串。
 
