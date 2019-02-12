@@ -16,3 +16,8 @@ Withe the three double-quotes.
 We'll be able to type as much as we like.
 Even 4 lines if we want, or 5, or 6.
 """)
+
+# 看习题10时回来总结：
+# 两种让字符串扩展到多行的方法：
+# ①是用 \n 隔开，这叫「换行字符」(new line character)。
+# ②是用 """ 括起多行字符串。
