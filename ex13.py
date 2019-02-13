@@ -4,13 +4,21 @@ from sys import argv
 # read this WYSS section for how to run this
 script, first, second, third = argv
 
+x = input()
+
 print('The script is called:', script)
 print("Your first variable is:", first)
 print("Your second variable is:", second)
 print("Your third variable is:", third)
 
+y = input("y ")
+
+# 以下，自由发挥。
 # 在变量的值为字符串的情况下：
 # 用加号连接，打印出来的多个变量是连在一起的。
 print(first + second + third)
 # 用逗号连接，打印出来的多个变量之间有空格。
 print(first, second, third)
+
+print(x)
+# 第7、第14和第23行代码为巩固练习3的内容。
