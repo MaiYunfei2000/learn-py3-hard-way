@@ -24,9 +24,16 @@ file_again = input("> ")
 txt_again = open(file_again)
 
 # 打印从变量txt_again读取到的内容。
+# 拓展练习7。
+# txt_again.close()
+# 若上行代码有效，运行程序时会提示：“ValueError: I/O operation on closed file.”
 print(txt_again.read())
+# 拓展练习7。
+txt_again.close()
 
 # 这个练习其实都不是很会注释诶……
 # 尚未弄清楚open()和.read()的机制。
 
 # 拓展阅读：http://www.runoob.com/python3/python3-file-methods.html
+
+# 拓展练习6未能解决，不理解“在提示符下使用open打开一个文件”是让我做什么。
