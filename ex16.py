@@ -1,3 +1,5 @@
+# 此练习中，学习了给open()加入不同参数。以及将字符串写入用写入模式打开的文件。
+
 # 仍不会注释这一行……
 from sys import argv
 
@@ -18,11 +20,12 @@ print("Opening the file...")
 # 「追加」是个什么意思？
 ## target = open(filename, 'w')
 # 下一行为巩固练习2的typeB，若启用，则禁用上一行代码；反之。
-target = open(filename, 'r+') # r+或w+都行。
+target = open(filename, 'w+') # r+或w+都行。
 
 print("Truncating the file. Goodbye!")
 # 清除target对应文件的内容。
-target.truncate()
+# 不清除文件的内容，用write写入内容时也会令原本内容消失！也就是说，write是覆盖内容，而不是加入内容。
+## target.truncate()
 
 print("Now I'm going to ask you for three lines.")
 
@@ -56,6 +59,7 @@ print() # 空一行。
 # 以只读模式（重新）访问文件。
 ## target = open(filename)
 print("现在来看看修改过后的文件内容吧~")
+target = open(filename)
 print(target.read())
 print("然后把文件关闭~这是一个很重要很重要很重要的习惯！")
 target.close()
