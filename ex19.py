@@ -1,3 +1,5 @@
+# 此练习中巩固了自定义函数，丰富了参数的用法。
+
 # 定义函数cheese_and_crackers，它有两个参数：cheese_count和boxes_of_crackers
 def cheese_and_crackers(cheese_count, boxes_of_crackers):
     print(f"You have {cheese_count} cheeses!")
