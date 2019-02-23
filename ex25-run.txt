@@ -1,0 +1,29 @@
+ex25 终端操作过程
+
+$ python3.6
+Python 3.6.0 (v3.6.0:41df79263a11, Dec 22 2016, 17:23:13)
+[GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import ex25
+>>> sentence = "All good things come to those who wait."
+>>> words = ex25.break_words(sentence)
+>>> words
+['All', 'good', 'things', 'come', 'to', 'those', 'who', 'wait.']
+>>> sorted_words = ex25.sort_words(words)
+>>> sorted_words
+['All', 'come', 'good', 'things', 'those', 'to', 'wait.', 'who']
+>>> ex25.print_first_word(sorted_words)
+All
+>>> ex25.print_last_word(sorted_words)
+who
+>>> sorted_words
+['come', 'good', 'things', 'those', 'to', 'wait.']
+>>> sorted_words = ex25.sort_sentence(sentence)
+>>> sorted_words
+['All', 'come', 'good', 'things', 'those', 'to', 'wait.', 'who']
+>>> ex25.print_first_and_last(sentence)
+All
+wait.
+>>> ex25.print_first_and_last_sorted(sentence)
+All
+who
