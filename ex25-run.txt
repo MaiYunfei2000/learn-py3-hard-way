@@ -4,26 +4,46 @@ $ python3.6
 Python 3.6.0 (v3.6.0:41df79263a11, Dec 22 2016, 17:23:13)
 [GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwin
 Type "help", "copyright", "credits" or "license" for more information.
+
+# 导入名为ex25的脚本。
 >>> import ex25
+
+# 将字符串“balabala”赋给变量sentence。
 >>> sentence = "All good things come to those who wait."
+
+# 将变量sentence作为函数break_words()的参数，将函数输出值赋给变量words。
+# 也就是将句子打散成若干个单词。
 >>> words = ex25.break_words(sentence)
+
+# 打印变量words。
 >>> words
 ['All', 'good', 'things', 'come', 'to', 'those', 'who', 'wait.']
+
+# 将打散的单词按字母顺序排列。
 >>> sorted_words = ex25.sort_words(words)
+
+# 打印变量sorted_words。
 >>> sorted_words
 ['All', 'come', 'good', 'things', 'those', 'to', 'wait.', 'who']
+
 >>> ex25.print_first_word(sorted_words)
 All
+
 >>> ex25.print_last_word(sorted_words)
 who
+
 >>> sorted_words
 ['come', 'good', 'things', 'those', 'to', 'wait.']
+
 >>> sorted_words = ex25.sort_sentence(sentence)
+
 >>> sorted_words
 ['All', 'come', 'good', 'things', 'those', 'to', 'wait.', 'who']
+
 >>> ex25.print_first_and_last(sentence)
 All
 wait.
+
 >>> ex25.print_first_and_last_sorted(sentence)
 All
 who
