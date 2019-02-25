@@ -9,10 +9,10 @@ def break_words(stuff):
 
 # 用起这些函数！
 
-#aaa = input("Enter a 4-BYTE-STRING here, it will be broke.\n> ")
-#print("Print bytes: ", break_words(aaa))
-
-#aaa1, aaa2, aaa3, aaa4 = aaa
+aaa = input("Enter a 4-BYTE-STRING here, it will be broke.\n> ")
+aaa0 = break_words(aaa)
+print("Print bytes: ", aaa0)
+#aaa1, aaa2, aaa3, aaa4 = aaa0
 #print(f"Print aaa1: {aaa1}\nPrint aaa2: {aaa2}")
 # 留意到了吗，这里的冒号后没有空格哦。
 #print("Print aaa3:", aaa3)
@@ -25,17 +25,25 @@ def sort_words(words):
 
 # 用起这些函数！
 
-#bbb = input("Enter a 4-WORD-SENTENCE here, it's words will be sorted.\n> ")
-#print(bbb) # ⚠️自主游戏施工暂停标记点
+bbb = sort_words(aaa0)
+print("Sorting the words:", bbb)
 
 def print_first_word(words):
     """Prints the first word after popping it off."""
+    # 移除列表的第一个元素，并返回该元素的值给变量words。
+    # -1则返回最后一个元素，非0或-1则为倒数第二个。（貌似？）
     word = words.pop(0)
     print(word)
 
+# 用起这些函数！
+
+ccc = print_first_word(bbb)
+
 def print_last_word(words):
     """Prints the last word after popping it off."""
+    # 移除列表的最后一个元素，并返回该元素的值给变量word。
     word = words.pop(-1)
+    # 打印变量word。
     print(word)
 
 def sort_sentence(sentence):
