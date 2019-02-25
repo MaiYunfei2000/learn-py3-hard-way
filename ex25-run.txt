@@ -47,3 +47,4 @@ wait.
 >>> ex25.print_first_and_last_sorted(sentence)
 All
 who
+# 为什么这里All没被移去呢？回去看看脚本吧。
