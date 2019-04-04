@@ -24,7 +24,7 @@ while i < num:
     if ran == 1:
         m = m + 1
         
-    p = round(m / i, 6) # 将 m/i 的值取6位小数赋给变量p
+    p = round(m / i, 8) # 将 m/i 的值取8位小数赋给变量p
     print(f"{i}	{ran}	{m}	{p}")
     target.write(f"{i}	{ran}	{m}	{p}\n")
 
