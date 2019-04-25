@@ -14,7 +14,7 @@ print(f"So, you're {age} old, {height} tall and {weight} heavy.")
 
 txt = open(filename)
 
-print("Here's your file {filename}:")
+print(f"Here's your file {filename}:")
 print(txt.read())
 
 print("Type the filename again:")
@@ -77,7 +77,7 @@ dogs = 15
 if people < cats:
     print ("Too many cats! The world is doomed!")
 
-if people < cats:
+if people > cats:
     print("Not many cats! The world is saved!")
 
 if people < dogs:
