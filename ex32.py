@@ -25,9 +25,12 @@ elements = []
 for i in range(0, 6):
     print(f"Adding {i} to the list.")
     # append is a function that lists understand
-    # 将i的每一个值形成一个表格赋给变量elements
+    # 将i的每一个值形成一个表格添加给列表elements
     elements.append(i)
 
 # now we can print them out too
 for i in elements:
     print(f"Element was: {i}")
+
+
+# 巩固练习3 官方文档中对list的介绍https://docs.python.org/zh-cn/3/tutorial/datastructures.html
