@@ -4,13 +4,14 @@ from sys import exit
 def gold_room():
     print("This room is full of gold. How much do you take?")
     
-    choice = (isInt(input("> ")))
-    # 如果 判断choice是否为整数的结果 为真
-    if str.isdigit(choice) == True:
-    # 这种做法输入小数点和负数仍然会出错，怎么解决？
-    if not choice
-        how_much = int(choice)
-    else:
+    # [8. 错误和异常 — Python 3.7.3 文档](https://docs.python.org/zh-cn/3/tutorial/errors.html)
+    # 尝试进行以下语句：
+    try:
+        # 将输入的变量转换为浮点数之后赋给变量how_much
+        how_much = float(input("> "))
+    
+    # 若执行发生错误，且错误类型为变量错误，则执行以下语句：
+    except ValueError:
         dead("Man, learn to type a number. You are dead.")
     
     if how_much < 50:
@@ -65,6 +66,7 @@ def cthulhu_room():
 def dead(why):
     print(why, "Good job!")
     # ⚠️这是什么意思，结束程序吗？但是程序不是会自行停止吗？在网上查了一下之后：所以有这条代码和没有这条代码会有什么区别？
+    # 程序中止，没有错误
     exit(0)
 
 def start():
