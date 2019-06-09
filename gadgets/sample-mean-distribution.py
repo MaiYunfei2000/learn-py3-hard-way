@@ -11,13 +11,16 @@ np.random.seed(100)
 # jupyter 的魔术关键字（magic keywords）
 # 在文档中显示 matplotlib 包生成的图形
 # 设置图形的风格
-%matplotlib inline 
-%config InlineBackend.figure_format = 'retina'
+##matplotlib inline 
+##config InlineBackend.figure_format = 'retina'
+# SyntaxError: invalid syntax ……
 
 # 生成表格：1至100，转换成数列，赋给变量population
 list01 = []
+
 for i in range(1, 101):
     list01.append(i)
+
 population = np.array(list01)
 
 print("这是100个数据：\n", population)
@@ -27,8 +30,9 @@ print("平均数：", population.mean())
 print("标准差：", population.std())
 print("标准误理论值：std/√10 = ", population.std() / np.sqrt(10))
 
-#num = input("\n下面进行抽样，请输入抽样次数：")
-# 重复抽取num次该样本量的样本
+##num = input("\n下面进行抽样，请输入抽样次数：")
+## 重复抽取num次该样本量的样本
+# 这句话到底代表什么意思？特别是random.choice和size和mean
 sample = np.random.choice(population, size=(100000, 10)).mean(axis=1)
 # 计算num个样本所代表的分布的均值和标准差
 print("样本均值分布的均值：", sample.mean())
