@@ -1,3 +1,5 @@
+# 这一节练习巩固了列表的玩法_(:з」∠)_
+
 ten_things = "Apples Oranges Crows Telephone Light Sugar"
 
 print("Wait there are not 10 things in that list. Let's fix that.")
@@ -53,3 +55,21 @@ print("再来一个！")
 print('###'.join(stuff[3:6]))
 
 print("\nNice! 原来如此！")
+
+# 巩固练习时间！
+
+## 1 翻译函数，使其更贴近自然语言
+### ten_things.split('字符串') 实际上相当于 split(ten_things, '字符串') （或者实际参数的顺序也可能反过来）
+### more_stuff.pop() 实际上相当于 pop(more_stuff)
+### a.join(stuff) 实际上相当于 join(a, stuff) （或者参数也可能是 stuff,a）
+
+## 2 搜索一些“面向对象编程”(object oriented programming, OOP)的知识
+### https://zh.wikipedia.org/wiki/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1
+
+## 3 搜索一下Python中的“类”(class)是个什么东西
+### 首先运行一下终端，自带的help()里有介绍。
+### [如何理解python的类与对象？ - 知乎](https://www.zhihu.com/question/27699413)
+### [Python类的使用总结 - fengxin的博客 - CSDN博客](https://blog.csdn.net/fengxinlinux/article/details/77091914)
+
+## 4 搜索一下“函数式编程”(functional programming)是个什么东西
+### https://zh.wikipedia.org/wiki/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B
