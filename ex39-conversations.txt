@@ -7,7 +7,7 @@ b
 >>> print(things[1])
 z
 >>> things
-['a', 'b', 'c', 'd']
+['a', 'z', 'c', 'd']
 
 conversation 2
 
