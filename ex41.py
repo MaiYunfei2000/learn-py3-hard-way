@@ -1,3 +1,4 @@
+# 此练习主要是为了学习「面向对象」的术语。
 import random
 from urllib.request import urlopen
 import sys
@@ -63,6 +64,7 @@ def convert(snippet, phrase):
     return results
 
 # keep going until they hit CTRL-D
+# 2333
 try:
     while True:
         snippets = list(PHRASES.keys())
