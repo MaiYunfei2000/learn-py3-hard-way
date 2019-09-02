@@ -1,4 +1,4 @@
-# 此次练习学习如何玩转字典
+# 此次练习学习如何玩转**字典**(dict)
 
 # create a mapping of state to abbreviation（创建一个从洲名称到其缩写名的映射）
 # 创建字典states，包含若干从 州 到 州缩写 的映射
@@ -93,3 +93,43 @@ print('\n# get a city with a default value')
 city = cities.get('TX', 'Does Not Exist')
 # key'TX'不存在与dict'states中，因此返回默认值'Does Not Exist'给变量city
 print(f"The city for the state 'TX' is: {city}")
+
+# 巩固练习1
+
+## Help on class dict in module builtins:
+
+## class dict(object)
+##  |  dict() -> new empty dictionary
+##  |  dict(mapping) -> new dictionary initialized from a mapping object's
+##  |      (key, value) pairs
+##  |  dict(iterable) -> new dictionary initialized as if via:
+##  |      d = {}
+##  |      for k, v in iterable:
+##  |          d[k] = v
+##  |  dict(**kwargs) -> new dictionary initialized with the name=value pairs
+##  |      in the keyword argument list.  For example:  dict(one=1, two=2)
+##  |
+##  |  Methods defined here:
+##  |
+##  |  __contains__(self, key, /)
+##  |      True if D has a key k, else False.
+##  |
+##  |  __delitem__(self, key, /)
+##  |      Delete self[key].
+##  |
+##  |  __eq__(self, value, /)
+##  |      Return self==value.
+
+# 发现了木有，dict是一种class
+
+# 额不对，找错了……
+
+# wai，可以搞多行注释的，你个SB
+
+# 三个单引号或三个双引号，e.g.
+
+'''
+111111
+222222
+333333
+'''
