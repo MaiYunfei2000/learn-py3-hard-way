@@ -1,4 +1,4 @@
-# MacOS上的Python配置不完全指南
+# Python配置不完全指南
 
 只是把我的行动痕迹沉淀一下而已。
 
@@ -41,7 +41,18 @@ pip3 install seaborn
 pip3 install scikit-learn
 pip3 install tensorflow
 pip3 install scrapy
+pip3 install jieba
+pip3 install pillow
+pip3 install pyinstaller
+pip3 install requests
+pip3 install beautifulsoup4
 ```
+
+其他玩法：
+
+* [pip 批量安装 - Google Search](https://www.google.com/search?q=pip+%E6%89%B9%E9%87%8F%E5%AE%89%E8%A3%85&oq=pip+%E6%89%B9%E9%87%8F%E5%AE%89%E8%A3%85&aqs=chrome..69i57.5980j0j7&sourceid=chrome&ie=UTF-8)
+* [python pip批量安装扩展包 - vb112479 - CSDN博客](https://blog.csdn.net/qq_18525247/article/details/79553499)
+
 列出当前安装的包：
 `pip list`
 
