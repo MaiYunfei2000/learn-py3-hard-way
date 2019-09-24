@@ -89,5 +89,21 @@ print(test.find('c', 13)) # 返回13
 print(test.find('c', 14)) # 返回14
 print(test.find('test')) # 返回0即首位
 
-# 暂停
-# 190923 1620 进度条：下一步：https://docs.python.org/3/library/stdtypes.html?highlight=str#str.format
+print('\nstr.format(*args, **kwargs)\n')
+# Perform a string formatting operation. The string on which this method is called can contain literal text or replacement fields delimited by braces {}. Each replacement field contains either the numeric index of a positional argument, or the name of a keyword argument. Returns a copy of the string where each replacement field is replaced with the string value of the corresponding argument.
+
+a = 1
+b = 2
+print('The sum of 1 + 2 is {}'.format(a+b))
+print('The sum of {} + {} is {}'.format(a, b, a+b))
+
+print('\nstr.format_map(mapping)\n')
+# Similar to str.format(**mapping), except that mapping is used directly and not copied to a dict. This is useful if for example mapping is a dict subclass:
+
+class Default(dict):
+    def __missing__(self, key):
+        return key
+
+print('{name} was born in {country}'.format_map(Default_map(name='Guido')
+
+# next https://docs.python.org/3/library/stdtypes.html?highlight=str#str.index
