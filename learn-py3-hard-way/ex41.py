@@ -1,12 +1,21 @@
 # 此练习主要是为了学习「面向对象」的术语。
+# 不记得%？➡️EX37
+
+# 调用模块random
 import random
+# 从？？ 调用模块urlopen
 from urllib.request import urlopen
+# 调用模块sys？
 import sys
 
+# 设定变量WORD_URL，将字符串“某网址”赋给此变量。
 WORD_URL = "http://learncodethehardway.org/words.txt"
+# 建立列表，名为WORDS。
 WORDS = []
 
+# 创建字典PHRASES，
 PHRASES = {
+    # 这是一个映射，不用被奇怪的符号搞晕，它们只是字符串而已（⚠️真的吗？）。
     "class %%%(%%%):":
       "Make a class named %%% that is-a %%%.",
     "class %%%(object):\n\tdef __init__(self, ***)" :
