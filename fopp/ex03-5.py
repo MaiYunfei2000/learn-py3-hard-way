@@ -151,3 +151,52 @@ print('\n★ str.isascii()\n')
 # 没搞懂🚧
 
 # next https://docs.python.org/3/library/stdtypes.html?highlight=str#str.isdecimal
+
+print('\n★ str.isdecimal()\n')
+# Return true if all characters in the string are decimal characters and there is at least one character, false otherwise. Decimal characters are those that can be used to form numbers in base 10, e.g. U+0660, ARABIC-INDIC DIGIT ZERO. Formally a decimal character is a character in the Unicode General Category “Nd”.
+
+print('2000'.isdecimal())
+print('2000.0'.isdecimal())
+print('2000.1'.isdecimal())
+print('maiyunfei2000'.isdecimal())
+print(''.isdecimal())
+
+print('\n★ str.isdigit()\n')
+# Return true if all characters in the string are digits and there is at least one character, false otherwise. Digits include decimal characters and digits that need special handling, such as the compatibility superscript digits. This covers digits which cannot be used to form numbers in base 10, like the Kharosthi numbers. Formally, a digit is a character that has the property value Numeric_Type=Digit or Numeric_Type=Decimal.
+
+print('2000'.isdigit())
+print('66ccff'.isdigit())
+print('2000.0'.isdigit())
+print('2000.1'.isdigit())
+print('maiyunfei2000'.isdigit())
+print(''.isdigit())
+
+print('\n★ str.isidentifier()\n')
+# Return true if the string is a valid identifier according to the language definition, section Identifiers and keywords.
+
+# 🚧跳过
+
+print('\n★ str.islower()\n')
+# Return true if all cased characters in the string are lowercase and there is at least one cased character, false otherwise.
+
+print(''.islower())
+print('2000'.islower())
+print('maiyunfei2000'.islower())
+print('maiyunfei'.islower())
+print('Maiyunfei'.islower())
+
+print('\n★ str.isnumeric()\n')
+# Return true if all characters in the string are numeric characters, and there is at least one character, false otherwise. Numeric characters include digit characters, and all characters that have the Unicode numeric value property, e.g. U+2155, VULGAR FRACTION ONE FIFTH. Formally, numeric characters are those with the property value Numeric_Type=Digit, Numeric_Type=Decimal or Numeric_Type=Numeric.
+
+print(''.isnumeric())
+print('ONE FIFTH'.isnumeric())
+print('U+2155'.isnumeric())
+print('1/5'.isnumeric())
+print('0.2'.isnumeric())
+print('2333'.isnumeric())
+print('maiyunfei2000'.isnumeric())
+
+print('\n★ str.isprintable()\n')
+# Return true if all characters in the string are printable or the string is empty, false otherwise. Nonprintable characters are those characters defined in the Unicode character database as “Other” or “Separator”, excepting the ASCII space (0x20) which is considered printable. (Note that printable characters in this context are those which should not be escaped when repr() is invoked on a string. It has no bearing on the handling of strings written to sys.stdout or sys.stderr.)
+
+# 🚧跳过
