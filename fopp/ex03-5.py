@@ -200,3 +200,34 @@ print('\n★ str.isprintable()\n')
 # Return true if all characters in the string are printable or the string is empty, false otherwise. Nonprintable characters are those characters defined in the Unicode character database as “Other” or “Separator”, excepting the ASCII space (0x20) which is considered printable. (Note that printable characters in this context are those which should not be escaped when repr() is invoked on a string. It has no bearing on the handling of strings written to sys.stdout or sys.stderr.)
 
 # 🚧跳过
+
+print('\n★ str.isspace()\n')
+# Return true if there are only whitespace characters in the string and there is at least one character, false otherwise.
+# A character is whitespace if in the Unicode character database (see unicodedata), either its general category is Zs (“Separator, space”), or its bidirectional class is one of WS, B, or S.
+
+print(''.isspace())
+print('maiyunfei2000 '.isspace())
+print(' '.isspace())
+
+print('\nstr.istitle()\n')
+# Return true if the string is a titlecased string and there is at least one character, for example uppercase characters may only follow uncased characters and lowercase characters only cased ones. Return false otherwise.
+
+print('maiyunfei'.istitle())
+print('2000'.istitle())
+print('maiyunfei2000'.istitle())
+print(' '.istitle())
+print(''.istitle())
+print('TEXT'.istitle())
+
+# 🚧没搞懂
+
+print('\n★ str.isupper()\n')
+
+print('TEXT'.isupper())
+print('Text'.isupper())
+print('text'.isupper())
+print(c.isupper())
+
+print('\n★ str.join(iterable)\n')
+# Return a string which is the concatenation of the strings in iterable. A TypeError will be raised if there are any non-string values in iterable, including bytes objects. The separator between elements is the string providing this method.
+
