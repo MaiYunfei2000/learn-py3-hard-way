@@ -1,4 +1,4 @@
-# many kinds of practice about "string"
+# many practice about "string"
 
 # 3.5.1
 
@@ -231,3 +231,135 @@ print(c.isupper())
 print('\n★ str.join(iterable)\n')
 # Return a string which is the concatenation of the strings in iterable. A TypeError will be raised if there are any non-string values in iterable, including bytes objects. The separator between elements is the string providing this method.
 
+# 🚧没搞懂 以及iterable是什么意思？/代表什么？
+
+print('\n★ ★ ★ str.ljust(width[, fillchar])\n')
+# Return the string left justified in a string of length width. Padding is done using the specified fillchar (default is an ASCII space). The original string is returned if width is less than or equal to len(s).
+
+print('maiyunfei2000'.ljust(0))
+print('maiyunfei2000'.ljust(13)) # len('maiyunfei') = 13
+print('maiyunfei2000'.ljust(14))
+print('maiyunfei2000'.ljust(100))
+
+# 🚧没搞懂
+
+print('\n★ str.lower()\n')
+# Return a copy of the string with all the cased characters converted to lowercase.
+
+b = 'China'
+c = 'ΑΒΓΔ'
+print(b.casefold(), c.casefold())
+print(b.lower(), c.lower())
+# 🚧所以casefold()和lower()到底有什么区别？
+
+print('\n★ str.lstrip([chars])\n')
+# Return a copy of the string with leading characters removed. The chars argument is a string specifying the set of characters to be removed. If omitted or None, the chars argument defaults to removing whitespace. The chars argument is not a prefix; rather, all combinations of its values are stripped:
+'''
+>>> '   spacious   '.lstrip()
+'spacious   '
+>>> 'www.example.com'.lstrip('cmowz.')
+'example.com'
+'''
+
+print('maiyunfei'.lstrip('mai'))
+print('maiyunfeimaiyunfei'.lstrip('mai'))
+print('0 maiyunfei'.lstrip())
+print('   0 maiyunfei'.lstrip())
+
+print('\n★ str.maketrans(x[, y[, z]]')
+# This static method returns a translation table usable for str.translate().
+# If there is only one argument, it must be a dictionary mapping Unicode ordinals (integers) or characters (strings of length 1) to Unicode ordinals, strings (of arbitrary lengths) or None. Character keys will then be converted to ordinals.
+# If there are two arguments, they must be strings of equal length, and in the resulting dictionary, each character in x will be mapped to the character at the same position in y. If there is a third argument, it must be a string, whose characters will be mapped to None in the result.
+
+# 🚧没搞懂
+
+print('\n★ str.partition(sep)\n')
+# Split the string at the first occurrence of sep, and return a 3-tuple containing the part before the separator, the separator itself, and the part after the separator. If the separator is not found, return a 3-tuple containing the string itself, followed by two empty strings.
+
+print('mai★yunfei'.partition('★'))
+print('★maiyunfei'.partition('★'))
+
+print('\n★ str.replace(old, new[, count])\n')
+# Return a copy of the string with all occurrences of substring old replaced by new. If the optional argument count is given, only the first count occurrences are replaced.
+
+print('maiyunyun'.replace('yun', 'fei'))
+print('maiyunyun'.replace('yun', 'fei', 1))
+print('maiyunyun'.replace('yun', 'fei', 2))
+print('maiyunyun'.replace('yun', 'fei', 3))
+print('233a233a233a233a233'.replace('a', 'bbq', 3))
+
+print('\n★ str.rfind([, start[, end]])\n')
+# Return the highest index in the string where substring sub is found, such that sub is contained within s[start:end]. Optional arguments start and end are interpreted as in slice notation. Return -1 on failure.
+
+print('maiyunfei'.rfind('mai'))
+print('maiyunfeimai'.rfind('mai'))
+print('maiyunfei'.rfind('fei'))
+print('maiyunfei'.rfind('cai'))
+
+print('\n★ str.rindex(sub[, start[, end]])\n')
+# Like rfind() but raises ValueError when the substring sub is not found.
+
+# 跳过
+
+print('\n★ str.rjust(width[, fillchar])\n')
+# Return the string right justified in a string of length width. Padding is done using the specified fillchar (default is an ASCII space). The original string is returned if width is less than or equal to len(s). 
+
+# 🚧 不懂，略过
+
+print('\n★ str.rpartition(sep)\n')
+# Split the string at the last occurrence of sep, and return a 3-tuple containing the part before the separator, the separator itself, and the part after the separator. If the separator is not found, return a 3-tuple containing two empty strings, followed by the string itself.
+
+print('mai★yunfei'.rpartition('★'))
+print('★maiyunfei'.rpartition('★'))
+print('maiyunfei'.rpartition('x'))
+
+print('\n★ rsplit(sep=None, maxsplit=-1)\n')
+# Return a list of the words in the string, using sep as the delimiter string. If maxsplit is given, at most maxsplit splits are done, the rightmost ones. If sep is not specified or None, any whitespace string is a separator. Except for splitting from the right, rsplit() behaves like split() which is described in detail below.
+
+print('maiyunfei2000'.rsplit(sep='i'))
+print('maiyunfei2000'.rsplit(sep=None))
+print('maiyunfei2000'.rsplit(sep='i', maxsplit=-1))
+print('maiyunfei2000'.rsplit(sep='i', maxsplit=-2))
+print('maiyunfei2000'.rsplit(sep='i', maxsplit=1))
+
+print('\n★ str.rstrip([chars])\n')
+# Return a copy of the string with trailing characters removed. The chars argument is a string specifying the set of characters to be removed. If omitted or None, the chars argument defaults to removing whitespace. The chars argument is not a suffix; rather, all combinations of its values are stripped:
+'''
+>>> '   spacious   '.rstrip()
+'   spacious'
+>>> 'mississippi'.rstrip('ipz')
+'mississ'
+'''
+
+print('maiyunfei2000'.rstrip('mai'))
+print('maiyunfei2000'.rstrip('fei'))
+print('maiyunfei2000'.rstrip('2000'))
+# 与lstrip()相反，是摘取后面露出来的字符串
+print('maiyunfei2000'.rstrip('i'))
+
+print('\n★ str.split(sep=None, maxsplit=-1)\n')
+# Return a list of the words in the string, using sep as the delimiter string. If maxsplit is given, at most maxsplit splits are done (thus, the list will have at most maxsplit+1 elements). If maxsplit is not specified or -1, then there is no limit on the number of splits (all possible splits are made).
+# If sep is given, consecutive delimiters are not grouped together and are deemed to delimit empty strings (for example, '1,,2'.split(',') returns ['1', '', '2']). The sep argument may consist of multiple characters (for example, '1<>2<>3'.split('<>') returns ['1', '2', '3']). Splitting an empty string with a specified separator returns [''].
+# For example:
+'''
+>>> '1,2,3'.split(',')
+['1', '2', '3']
+>>> '1,2,3'.split(',', maxsplit=1)
+['1', '2,3']
+>>> '1,2,,3,'.split(',')
+['1', '2', '', '3', '']
+'''
+# If sep is not specified or is None, a different splitting algorithm is applied: runs of consecutive whitespace are regarded as a single separator, and the result will contain no empty strings at the start or end if the string has leading or trailing whitespace. Consequently, splitting an empty string or a string consisting of just whitespace with a None separator returns [].
+# For example:
+'''
+>>> '1 2 3'.split()
+['1', '2', '3']
+>>> '1 2 3'.split(maxsplit=1)
+['1', '2 3']
+>>> '   1   2   3   '.split()
+['1', '2', '3']
+'''
+
+# 🚧进度点
+
+# https://docs.python.org/zh-cn/3/library/stdtypes.html?highlight=str#str.split
