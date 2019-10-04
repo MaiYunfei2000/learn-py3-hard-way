@@ -360,6 +360,14 @@ print('\n★ str.split(sep=None, maxsplit=-1)\n')
 ['1', '2', '3']
 '''
 
-# 🚧进度点
+print('\nstr.splitlines([keepends])\n')
+# Return a list of the lines in the string, breaking at line boundaries. Line breaks are not included in the resulting list unless keepends is given and true.
 
-# https://docs.python.org/zh-cn/3/library/stdtypes.html?highlight=str#str.split
+print("↓ print('asfasf\nasdfsadf\rdasfadf\r\nsafsdf')")
+print('asfasf\nasdfsadf\rdasfadf\r\nsafsdf')
+print('asfasf\nasdfsadf\rdasfadf\r\nsafsdf'.splitlines())
+print('asfasf\nasdfsadf\rdasfadf\r\nsafsdf'.splitlines(keepends = True))
+# 不明白keepends是什么，哦，“keep ends”——分割后保留末尾字符——的意思
+# 与split的比较详见https://docs.python.org/zh-cn/3/library/stdtypes.html?highlight=str#str.split
+
+# next: https://docs.python.org/zh-cn/3/library/stdtypes.html?highlight=str#str.startswith
