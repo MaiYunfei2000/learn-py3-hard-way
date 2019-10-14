@@ -1,11 +1,14 @@
+# Make a class named Scene that is-a object.
 class Scene(object):
     
+    # class Scene has-a function enter that takes self param.
     def enter(self):
         pass
     
 
 class Engine(object):
     
+    # class Engine has-a __init__ that takes self and scene_map params.
     def __init__(self, scene_map):
         pass
     
