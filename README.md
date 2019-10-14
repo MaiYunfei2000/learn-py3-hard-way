@@ -4,14 +4,19 @@
 
 ## 目录
 
-- learn-py3-hard-way：照着《“笨方法”学Python3》(Learn Python3 the Hard Way)的指示输出的代码。 
-- fopp (fundamentals of Python programming) ：学习《Python语言程序设计基础(第2版)》（嵩天、礼欣、黄天羽著，我学校Python课的教材）的练习代码。  
-- cnacm：学习《Computational Neuroscience and Cognitive Modeling》的练习代码。
+下表中所示的文件夹为照着某读物或资源自学时的练习代码。
+
+| 文件夹名 | 相应读物或资源 |
+| --- | --- |
+| zedd | 《“笨方法”学Python3》 |
+| fopp | 《Python语言程序设计基础(第2版)》（嵩天、礼欣、黄天羽著，我校Python课的教材）|
+| cnacm | 《Computational Neuroscience and Cognitive Modeling》 |
+| pynn | 《Python神经网络编程》
 
 懒人备用：
 
 - cd maiyunfei2000.com/code/trail-learn-py
-- cd maiyunfei2000.com/code/trail-learn-py/learn-py3-hard-way
+- cd maiyunfei2000.com/code/trail-learn-py/zedd
 - cd maiyunfei2000.com/code/trail-learn-py/fopp
 - cd maiyunfei2000.com/code/trail-learn-py/cnacm
 
@@ -20,6 +25,11 @@
 	- 你也可以在官方文档的站内进行搜索
 
 ## NEXT MOVES
+
+
+
+
+## 沉船区
 
 对着这本书练完之后可以干些什么？
 
