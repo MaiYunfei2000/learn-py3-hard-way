@@ -54,19 +54,13 @@ pip3 install beautifulsoup4
 * [python pip批量安装扩展包 - vb112479 - CSDN博客](https://blog.csdn.net/qq_18525247/article/details/79553499)
 
 列出当前安装的包：
-`pip list`
+`pip3 list`
 
 列出可升级的包：
-`pip list --outdate`
+`pip3 list --outdate`
 
 升级一个包：
-`pip install --upgrade requests  // mac,linux,unix 在命令前加 sudo -H`
-
-批量下载并更新：
-```
-pip install pip-review
-pip-review --local --interactive
-```
+`pip3 install --upgrade xxx`(“xxx”为相应的包)
 
 ## changelog
 
