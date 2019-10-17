@@ -60,14 +60,7 @@ pip3 install beautifulsoup4
 `pip3 list --outdate`
 
 升级一个包：
-`pip3 install --upgrade requests  // mac,linux,unix 在命令前加 sudo -H`
-
-批量下载并更新：
-```
-pip3 install pip-review
-
-pip-review --local --interactive
-```
+`pip3 install --upgrade xxx`(“xxx”为相应的包)
 
 ## changelog
 
