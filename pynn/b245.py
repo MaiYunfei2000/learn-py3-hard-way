@@ -37,8 +37,8 @@ class neuralNetwork:
         # convert inputs list to 2d array（将输入转换为二维矩阵）
         # numpy.array()的功能是创建一个矩阵
         # 其中inputs_list作为参数从函数query()中获取（但是什么个东西？）；ndmin是可选参数，指定矩阵具有的最小维数
-        inputs = numpy.array(inputs_list, ndmin=2).T # 末尾的".T"啥意思？
-        # 所以这段代码是什么意思呢？
+        inputs = numpy.array(inputs_list, ndmin=2).T
+        # 末尾的".T"啥意思？哦，转置。如果没有这个，则这个input为行向量而非列向量
         # more detailed information: [numpy.array — NumPy v1.17 Manual](https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html)
         
         # calculate signals into hidden layer
@@ -57,6 +57,8 @@ class neuralNetwork:
         # calculate the signals emerging from final output layer
         final_outputs = self.activation_function(final_inputs)
         
+        print(final_outputs)
+        
         pass
 
 input_nodes = 3
@@ -65,4 +67,10 @@ output_nodes = 3
 
 learning_rate = 0.5
 
+# set n to an instance of neuralNetwork
 n = neuralNetwork(input_nodes, hidden_nodes, output_nodes, learning_rate)
+
+
+
+# from n get the query function, call it with an array [1, 0.5, -1.5]
+n.query([1, 0.5, -1.5])
