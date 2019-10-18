@@ -48,6 +48,7 @@ class neuralNetwork:
             # 学习率 * 矩阵点乘【（反向传播至隐藏层的误差矩阵 * 前馈至输出层的输入信号矩阵 * (1 - 前馈至输出层的输入信号矩阵)）* 隐藏层输出的信号矩阵】 
         self.who += self.lr * numpy.dot((output_errors * final_outputs * (1.0 - final_outputs)), numpy.transpose(hidden_outputs))
         # transpose也是取矩阵的转置，可为什么不用.T呢？
+        # 跑过了，也可以，当然，变量名后直接跟.T的前提是这些代码处于numpy函数的括号内
         # more detailed information: [numpy.transpose — NumPy v1.17 Manual](https://docs.scipy.org/doc/numpy/reference/generated/numpy.transpose.html)
         
         # update the weights for the links between the input and hidden layers(更新输入层至隐藏层的权重矩阵）
