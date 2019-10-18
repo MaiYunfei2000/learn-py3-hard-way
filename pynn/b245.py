@@ -57,6 +57,7 @@ class neuralNetwork:
         # calculate the signals emerging from final output layer
         final_outputs = self.activation_function(final_inputs)
         
+        # 自己额外加的一条测试代码
         print(final_outputs)
         
         pass
