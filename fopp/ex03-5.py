@@ -360,7 +360,7 @@ print('\n★ str.split(sep=None, maxsplit=-1)\n')
 ['1', '2', '3']
 '''
 
-print('\nstr.splitlines([keepends])\n')
+print('\n★ str.splitlines([keepends])\n')
 # Return a list of the lines in the string, breaking at line boundaries. Line breaks are not included in the resulting list unless keepends is given and true.
 
 print("↓ print('asfasf\nasdfsadf\rdasfadf\r\nsafsdf')")
@@ -370,4 +370,15 @@ print('asfasf\nasdfsadf\rdasfadf\r\nsafsdf'.splitlines(keepends = True))
 # 不明白keepends是什么，哦，“keep ends”——分割后保留末尾字符——的意思
 # 与split的比较详见https://docs.python.org/zh-cn/3/library/stdtypes.html?highlight=str#str.split
 
-# next: https://docs.python.org/zh-cn/3/library/stdtypes.html?highlight=str#str.startswith
+print('\n★ str.startswith(prefix[, start[, end]])\n')
+# Return True if string starts with the prefix, otherwise return False. prefix can also be a tuple of prefixes to look for. With optional start, test string beginning at that position. With optional end, stop comparing string at that position.
+
+print('maiyunfei'.startswith('mai'))
+print('maiyunfei'.startswith('yun'))
+print('maiyunfei'.startswith('fei', 5))
+print('maiyunfei'.startswith('fei', 6))
+print('maiyunfei'.startswith('fei', 6, 7))
+print('maiyunfei'.startswith('fei', 6, 8))
+print('maiyunfei'.startswith('fei', 6, 9))
+
+# next: https://docs.python.org/3/library/stdtypes.html?highlight=str#str.strip
