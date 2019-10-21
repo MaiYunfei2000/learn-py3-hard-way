@@ -3,6 +3,15 @@
 
 ## [origin]Animal is-a object (yes, sort of confusing) look at the extra credit
 class Animal(object):
+    
+    def __init__(self, name):
+        
+        self.name = name
+    
+    def move(name):
+        
+        print('Yes, I can move!')
+    
     pass
 
 ## make a class named Dog that is-a Animal.
@@ -30,6 +39,7 @@ class Person(object):
 
         ## [origin]Person has-a pet of some kind.
         self.pet = None
+        # 确保类的self.pet属性被设置为默认None
 
 ## make a class named Employee that is-a Person.
 class Employee(Person):
@@ -44,7 +54,10 @@ class Employee(Person):
 
 ## make a class named Fish that is-a object.
 class Fish(object):
-    pass
+    
+    def __init__(self):
+        
+        print("I can swim.")
 
 ## make a class named Salmon that is-a Fish.
 class Salmon(Fish):
@@ -59,7 +72,7 @@ class Halibut(Fish):
 rover = Dog("Rover")
 # so what does "Rover" mean?
 
-## stan is-a Cat
+## satan is-a Cat
 satan = Cat("Satan")
 
 ## mary is-a Person
@@ -83,3 +96,18 @@ crouse = Salmon()
 
 ## set harry to an instance of class Halibut
 harry = Halibut()
+
+
+
+# try something
+print(rover.name)
+print(f'My name is {rover.name}.')
+rover.move()
+frank.pet.move()
+print(f"Frank's pet is named {frank.pet.name}.")
+print(mary.name)
+print(mary.pet)
+print(mary.pet.name)
+print(frank.pet)
+print(frank.pet.name)
+print(f"His name is {frank.name}, and his salary is {frank.salary}.")
