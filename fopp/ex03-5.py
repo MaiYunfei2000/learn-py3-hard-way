@@ -400,4 +400,14 @@ print('   maiyunfei2000maiyunfei2000!   '.strip())
 print('   maiyunfei2000maiyunfei2000!   '.strip('ma02!'))
 print('   maiyunfei2000maiyunfei2000!   '.strip('ma02! '))
 
-# next: https://docs.python.org/3/library/stdtypes.html?highlight=str#str.swapcase
+print('\n★ str.swapcase()\n')
+# Return a copy of the string with uppercase characters converted to lowercase and vice versa. Note that it is not necessarily true that s.swapcase().swapcase() == s.
+
+print('str'.swapcase())
+print('STR'.swapcase())
+print('Str'.swapcase())
+print('sTR'.swapcase())
+print('str'.swapcase().swapcase())
+print('str'.swapcase().swapcase() == 'str')
+
+# next: https://docs.python.org/3/library/stdtypes.html?highlight=str#str.title
