@@ -48,6 +48,7 @@ class Employee(Person):
     def __init__(self, name, salary):
         ## [origin]?? hmm what is this strange magic?
         # 所以到底是什么鬼……
+        # （靠猜，瞎说，有待确认）直接从父类Person那里拿来了name，在这里初始化；因此后面你看到设置frank作为Employee的一个对象时，Frank既是类Person也是类Employee的name属性
         super(Employee, self).__init__(name)
         ## Employee has-a salary of some kind.
         self.salary = salary
@@ -100,6 +101,7 @@ harry = Halibut()
 
 
 # try something
+print('随便试一些东西')
 print(rover.name)
 print(f'My name is {rover.name}.')
 rover.move()
