@@ -27,8 +27,6 @@ class neuralNetwork:
         
         # 设定sigmoid函数
         self.activation_function = lambda x: scipy.special.expit(x)
-        
-        pass
     
     # 训练函数
     def train(self, inputs_list, targets_list):
@@ -46,8 +44,6 @@ class neuralNetwork:
         # 更新输入层至隐藏层的权重
         self.wih += self.lr * numpy.dot((hidden_error * hidden_outputs * (1.0 - hidden_outputs)), numpy.transpose(inputs))
         
-        pass
-        
     # 查询函数
     def query(self, inputs_list):
         
@@ -59,7 +55,7 @@ class neuralNetwork:
         # 前馈至隐藏层的输入信号
         hidden_inputs = numpy.dot(self.wih, inputs)
         # 隐藏层输出的信号矩阵（即前馈至输出层的输入信号矩阵）
-        hidden_outputs = self.activation_function(hidden_inputs)函数的值域 得到 隐藏层输出的信号矩阵（即前馈至输出层的输入信号矩阵）
+        hidden_outputs = self.activation_function(hidden_inputs)
 
         # 输出层
         # 前馈至输出层的输入信号矩阵
@@ -67,7 +63,7 @@ class neuralNetwork:
         # 最终输出的信号
         final_outputs = self.activation_function(final_inputs)
         
-        return final_outputst
+        return final_outputs
 
         pass
 
@@ -78,3 +74,10 @@ output_nodes = 3
 learning_rate = 0.5
 
 n = neuralNetwork(input_nodes, hidden_nodes, output_nodes, learning_rate)
+
+# test
+
+print(n.lr)
+print(n.wih)
+print(n.who)
+print(n.query([1,2,3]))
