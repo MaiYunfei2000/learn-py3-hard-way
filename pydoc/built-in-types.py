@@ -9,7 +9,8 @@
 
 #### Text Sequence Type — str: https://docs.python.org/3/library/stdtypes.html#text-sequence-type-str
 
-
+# 没搞懂的函数：请搜索“🚧”或“没搞懂”
+# str.center(); str.encode(); str.expandtabs(); ...
 
 print('\n★ str.capitalize()\n')
 # Return a copy of the string with its first character capitalized and the rest lowercased.
@@ -215,6 +216,7 @@ print('TEXT'.istitle())
 # 🚧没搞懂
 
 print('\n★ str.isupper()\n')
+# 
 
 print('TEXT'.isupper())
 print('Text'.isupper())
@@ -226,7 +228,7 @@ print('\n★ str.join(iterable)\n')
 
 # 🚧没搞懂 以及iterable是什么意思？/代表什么？
 
-print('\n★ ★ ★ str.ljust(width[, fillchar])\n')
+print('\n★ str.ljust(width[, fillchar])\n')
 # Return the string left justified in a string of length width. Padding is done using the specified fillchar (default is an ASCII space). The original string is returned if width is less than or equal to len(s).
 
 print('maiyunfei2000'.ljust(0))
@@ -432,4 +434,26 @@ print('αβ γ'.title())
 print('α β γ'.title())
 print(' '.title())
 
-# next: https://docs.python.org/3/library/stdtypes.html?highlight=str#str.translate
+print('\n★ str.translator(table)\n')
+# Return a copy of the string in which each character has been mapped through the given translation table. The table must be an object that implements indexing via __getitem__(), typically a mapping or sequence. When indexed by a Unicode ordinal (an integer), the table object can do any of the following: return a Unicode ordinal or a string, to map the character to one or more other characters; return None, to delete the character from the return string; or raise a LookupError exception, to map the character to itself.
+# You can use str.maketrans() to create a translation map from character-to-character mappings in different formats.
+# See also the codecs module for a more flexible approach to custom character mappings.
+
+# 🚧没搞懂
+
+print('\n★ str.upper()\n')
+
+# Return a copy of the string with all the cased characters converted to uppercase. Note that s.upper().isupper() might be False if s contains uncased characters or if the Unicode category of the resulting character(s) is not “Lu” (Letter, uppercase), but e.g. “Lt” (Letter, titlecase).
+# The uppercasing algorithm used is described in section 3.13 of the Unicode Standard.
+
+print('test'.upper())
+print('Test'.upper())
+print('maiyunfei2000'.upper())
+print('2000'.upper())
+print('maiyunfei'.upper().isupper())
+print('maiyunfei2000'.upper().isupper())
+print(' '.upper().isupper())
+print('maiyunfei***'.upper())
+print('maiyunfei***'.upper().isupper())
+
+# next: https://docs.python.org/3/library/stdtypes.html?highlight=str#str.zfill
