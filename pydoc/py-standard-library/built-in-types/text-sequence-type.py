@@ -1,3 +1,4 @@
+##### Python标准库 → 内置类型 → 文本序列类型--str
 ##### practice source: https://docs.python.org/3/library/stdtypes.html
 
 
