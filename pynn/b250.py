@@ -16,7 +16,7 @@ data_file.close()
 # 将data_list的第0行（即第1行）用逗号将字符串分割成一条list，赋给all_values
 all_values = data_list[0].split(',')
 # [1:]采用列表all_values中第一个元素以外的所有值
-# numpy.asfarray()将文本字符串转化为实数，更多见[numpy.asfarray — NumPy v1.17 Manual](https://docs.scipy.org/doc/numpy/reference/generated/numpy.asfarray.html)
+# numpy.asfarray()将列表中的文本字符串转化为浮点数，更多见[numpy.asfarray — NumPy v1.17 Manual](https://docs.scipy.org/doc/numpy/reference/generated/numpy.asfarray.html)
 # reshape((28,28))列表每28个元素“折返一次”（也许是转到第二行开头的意思），形成28*28的方阵
 # 将这个方阵形式的数组赋给image_array
 image_array = numpy.asfarray(all_values[1:]).reshape(28,28)
