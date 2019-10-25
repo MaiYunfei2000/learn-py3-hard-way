@@ -3,7 +3,14 @@
 # 3.5.1
 
 name = "Python语言程序设计"
-print(name[0], name[7], name[11], name[2:-4], name[:6], name[6:], name[:], sep='\n')
+print(
+name[0],
+name[7],
+name[11],
+name[2:-4],
+name[:6],
+name[6:],
+name[:], sep='\n')
 '''依次为：
 第1个：P
 第8个：言
