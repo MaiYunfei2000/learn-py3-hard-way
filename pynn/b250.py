@@ -78,7 +78,7 @@ class neuralNetwork:
         inputs = numpy.array(inputs_list, ndmin=2).T
 
         hidden_inputs = numpy.dot(self.wih, inputs)
-        hidden_outputs = self.activation_function(hidden_inputs)函数的值域 得到 隐藏层输出的信号矩阵（即前馈至输出层的输入信号矩阵）
+        hidden_outputs = self.activation_function(hidden_inputs)
 
         final_inputs = numpy.dot(self.who, hidden_outputs)
         final_outputs = self.activation_function(final_inputs)
