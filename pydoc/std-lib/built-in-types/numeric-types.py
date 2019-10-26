@@ -12,7 +12,7 @@
 
 complexa = (1+2j)
 
-print(f'虚数{complexa}的实部为{complexa.real}，虚部为{complexa.imag}。')
+print(f'虚数{complexa}的实部为{complexa.real}，虚部为{complexa.imag}')
 
 # ------------------------------------
 
@@ -35,4 +35,32 @@ print(divmod(3,2)) # divmod(x, y): the pair (x // y, x % y). see more: [divmod()
 print(pow(2,3)) # pow(x, y): x to the power y. see more: [pow()](https://docs.python.org/3/library/functions.html#pow)
 print(2 ** 3) # x ** y: x to the power y
 
-# 003 (🚧next：消化operation表格下方的“notes:”
+# 003
+
+# All numbers.Real(https://docs.python.org/3/library/numbers.html#numbers.Real) types (int and float) also include the following operations:
+
+# math.trunc(x): x truncated to Integral https://docs.python.org/3/library/math.html#math.trunc
+import math
+
+print(math.trunc(5.4))
+print(math.trunc(5.5))
+print(math.trunc(5.6))
+print()
+# round(x[, n]): x rounded to n digits, rounding half to even. If n is omitted, it defaults to 0. https://docs.python.org/3/library/functions.html#round
+print(round(5.4))
+print(round(5.5))
+print(round(5.6))
+print(round(5.55, 1))
+print(round(5.55, -1))
+print(round(5.55, -2))
+print()
+# math.floor(x): the greatest Integral <= x https://docs.python.org/3/library/math.html#math.floor
+print(math.floor(5.5))
+print()
+# math.ceil(x): the least Integral >= x https://docs.python.org/3/library/math.html#math.ceil
+print(math.ceil(5.5))
+print()
+
+# For additional numeric operations see the math(https://docs.python.org/3/library/math.html#module-math) and cmath(https://docs.python.org/3/library/cmath.html#module-cmath) modules.
+
+# 004 https://docs.python.org/3/library/stdtypes.html#bitwise-operations-on-integer-types
