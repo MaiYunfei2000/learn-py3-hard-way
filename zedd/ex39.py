@@ -75,6 +75,7 @@ print('-' * 10)
 print('\n# safely get a abbreviation by state that might not be there')
 # 确认key'Texas'是否存在于dict'states'中
 state = states.get('Texas')
+# try another: state = states.get('New York')
 # get是什么意思？
 # 盲猜是这个：https://docs.python.org/zh-cn/3/library/stdtypes.html?highlight=get#dict.get
 # dict.get(key[, default])：如果 key 存在于字典中则返回 key 的值，否则返回 default。 如果 default 未给出则默认为 None，因而此方法绝不会引发KeyError
