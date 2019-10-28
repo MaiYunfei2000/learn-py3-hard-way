@@ -96,7 +96,7 @@ for record in training_data_list:
 
 # load the mnist test data CSV file into a list
 
-test_data_file = open("makeyourownneuralnetwork-master/mnist_dataset/mnist_train_100.csv", 'r')
+test_data_file = open("makeyourownneuralnetwork-master/mnist_dataset/mnist_test_10.csv", 'r')
 test_data_list = test_data_file.readlines()
 test_data_file.close()
 
@@ -111,14 +111,14 @@ for record in test_data_list:
     all_values = record.split(',')
     # correct answer is first value
     correct_label = int(all_values[0])
-    print(correct_label, "correct label")
+    print("correct label:		", correct_label)
     # scale and shift the inputs
     inputs = (numpy.asfarray(all_values[1:]) / 255.0 * 0.99) + 0.01
     # query the network
     outputs = n.query(inputs)
     # the index of the highest value corresponds to the label
     label = numpy.argmax(outputs)
-    print(label, "network's answer")
+    print("network's answer:	", label, '\n')
     # append correct or incorrect to list
     if (label == correct_label):
         # network's answer matches correct answer, add 1 to scoreboard
@@ -130,3 +130,5 @@ for record in test_data_list:
         pass
     
     pass
+
+print(scoreboard)
