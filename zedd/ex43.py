@@ -1,23 +1,45 @@
-from sys import exit
-from random import randint
-from textwrap import dedent
+# 此练习中以编写迷你文字冒险游戏为例继续接受OOP更猛烈的洗礼
 
+from sys import exit
+# https://docs.python.org/3/library/sys.html?highlight=sys%20exit#sys.exit
+
+from random import randint
+
+from textwrap import dedent 
+# Remove any common leading whitespace from every line in text. See more: https://docs.python.org/3/library/textwrap.html?highlight=dedent#textwrap.dedent
+# 见CentralCorridor的前两个print，对于第一个print的字符串，如果没有dedent，打印时会把缩进也打印出来
+
+# 请记住：set an instance 时丢进去的参数实际上丢给了这个类的 __init__ 函数
 
 class Scene(object):
     
+    # class Scene has-a enter that takes self param
     def enter(self):
         print("This scene is not yet configured.")
         print("Subclass it and implement enter().")
         exit(1)
+        # If it is an integer, zero is considered “successful termination” and any nonzero value is considered “abnormal termination” by shells and the like. Most systems require it to be in the range 0–127, and produce undefined results otherwise.
+        # 为什么ex35里是0而这里是1？
 
 
 class Engine(object):
     
+    # class Engine has-a __init__ that takes self and scene_map params
     def __init__(self, scene_map):
+        
+        # __init__ has-a scene_map of some kind
         self.scene_map = scene_map
     
     def play(self):
+        # 调用了后面Map类型的opening_scene和next_scene函数
+        # 那么current_scene这里发生了什么？
+            # 既然self.scene_map已经成为了类Map的实例（见此文档最后几行代码的注释），它就具有类Map的函数opening_scene()
+            # 运行了opening_scene()函数，将得到的结果val（类CentralCorridor的一个实例）赋给current_scene（具体发生了什么？细节去见Map.opening_scene()的代码注释）
+            # 也就是说，current_scene被设置为类CentralCorridor的一个实例，好的没了
         current_scene = self.scene_map.opening_scene()
+        # 那么last_scene这里发生了什么？
+            # （此处就没有current_scene那么详细了，类比就好）
+            # 将last_scene设置为类Finished()的一个实例
         last_scene = self.scene_map.next_scene('finished')
     
         while current_scene != last_scene:
@@ -232,6 +254,8 @@ class Finished(Scene):
 
 class Map(object):
     
+    # class Map has-a scenes dictionary
+    # create a dictionary named scenes which has 'central_corridor', ... , etc..
     scenes = {
         'central_corridor': CentralCorridor(),
         'laser_weapon_armory': LaserWeaponArmory(),
@@ -241,17 +265,38 @@ class Map(object):
         'finished': Finished(),
     }
     
+    # class Map has-a __init__ that takes self and start_scene params
     def __init__(self, start_scene):
         self.start_scene = start_scene
     
+    # class Map has-a next_scene that takes self and scene_name params
     def next_scene(self, scene_name):
+        
+        # get scene_name from the scenes dictionary and give it to val
         val = Map.scenes.get(scene_name)
+        # if exclude "Map.", you will get NameError: name 'scenes' is not defined
+        # 必须从Map类里获取这个字典
         return val
+        
+        # 以next_scene('central_corridor')为例，此时发生了什么呢？
+            # 'central_corridor'赋给了变量scene_name
+            # 此时相当于运行 val = Map.scenes.get('central_corridor')
+            # 也就是从字典Map.scene里获取键'central_corridor'的值，也就是CentralCorridor()，赋给val
+            # 这样，这段代码就相当于设置val为类CentralCorridor（类Scene的一个实例）的一个实例，并将这个val丢出去
     
+    # class Map has-a opening_scene that takes self param
     def opening_scene(self):
+        
+        # 发生了什么呢？以程序起始状态为例，这个程序中Map获得的第一个参数（也就是start_scene也就是丢给self.start_scene的值）是'central_corridor'
+            # 那么self.next_scene('central_corridor')发生了什么呢？见上面self.next_scene()的注释
         return self.next_scene(self.start_scene)
 
 
+# set a_map as an instance of class Map and takes 'central_corridor' as start_scene
 a_map = Map('central_corridor')
+# set a_game as an instance of class Engine and takes a_map(an instance of class Map) as scene_map (so scene_map is an instance of class Map)
 a_game = Engine(a_map)
+    # 接下来发生了什么？
+    # self.scene_map成为了class Map的（以central_corridor为start_scene的）实例
+# 既然a_game是类Engine的对象了，那么a_game就具有函数play()了，运行！
 a_game.play()
