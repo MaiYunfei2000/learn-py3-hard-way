@@ -20,6 +20,8 @@ class Scene(object):
         exit(1)
         # If it is an integer, zero is considered “successful termination” and any nonzero value is considered “abnormal termination” by shells and the like. Most systems require it to be in the range 0–127, and produce undefined results otherwise.
         # 为什么ex35里是0而这里是1？
+        
+    # 🚧这个enter到底干什么用的？？
 
 
 class Engine(object):
@@ -39,11 +41,14 @@ class Engine(object):
         current_scene = self.scene_map.opening_scene()
         # 那么last_scene这里发生了什么？
             # （此处就没有current_scene那么详细了，类比就好）
-            # 将last_scene设置为类Finished()的一个实例
+            # 将last_scene设置为类Finished的一个实例
         last_scene = self.scene_map.next_scene('finished')
     
+        # 只要条件符合【current_scene与last_scene不是同一个Scene】时：
         while current_scene != last_scene:
+            # 🚧？？
             next_scene_name = current_scene.enter()
+            # ？？
             current_scene = self.scene_map.next_scene(next_scene_name)
         
         # be sure to print out the last scene
@@ -73,7 +78,7 @@ class CentralCorridor(Scene):
             destroyed your entire crew. You are the last surviving
             member and your last mission is to get the neutron destruct
             bomb from the Weapons Armory, put it in the bridge, and 
-            blow the ship up after getting into and escape pod.
+            blow the ship up after getting into the escape pod.
             
             You're running down the central corridor to the Weapons
             Armory when a Gothon jumps out, red scaly skin, dark grimy
@@ -85,8 +90,8 @@ class CentralCorridor(Scene):
         action = input("> ")
         
         if action == "shoot!":
-            # 为什么开头是四个双引号？
-            print(dedent(""""
+            # 为什么开头是四个双引号？四个不对，会影响dedent的效果。试试就知道了。
+            print(dedent("""
             Quick on the draw you yank out your blaster and fire
             it at the Gothon. His clown costume is flowing and 
             moving around his body, which throws off your aim.
@@ -110,16 +115,16 @@ class CentralCorridor(Scene):
             return 'death'
         
         elif action == "tell a joke":
-            print(dedent(""""
+            print(dedent("""
                 Lucky for you they made you learn Gothon insults in
                 the academy. You tell the one Gothon joke you know:
                 Lbhe zbgure vf fb sng, jura fur fvgf nebhaq gur ubhfr,
                 fur fvgf nebhaq gur ubhfr. The Gothon stops, tries
-                not to laugh, then busts out laughing and can't move.
+                not to laugh, then bursts out laughing and can't move.
                 While he's laughing you run up and shoot him square in
                 the head putting him down, then jump through the
                 Weapon Armory door.
-                """))
+            """))
             return 'laser_weapon_armory'
         
         else:
@@ -141,6 +146,7 @@ class LaserWeaponArmory(Scene):
             """))
         
         code = f"{randint(1,9)}{randint(1,9)}{randint(1,9)}"
+        print('this is code: ', code) # 调试用
         guess = input("[keypad]> ")
         guesses = 0
         
@@ -223,6 +229,7 @@ class EscapePod(Scene):
             """))
         
         good_pod = randint(1,5)
+        print('good pod: ', good_pod) # 调试用
         guess = input("[pod #]> ")
         
         if int(guess) != good_pod:
