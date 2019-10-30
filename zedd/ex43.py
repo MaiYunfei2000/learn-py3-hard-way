@@ -1,4 +1,5 @@
 # 此练习中以编写迷你文字冒险游戏为例继续接受OOP更猛烈的洗礼
+# 没想象中的那么难，只是你要好好理一理每行代码之后到底都发生了什么事情
 
 from sys import exit
 # https://docs.python.org/3/library/sys.html?highlight=sys%20exit#sys.exit
@@ -46,13 +47,27 @@ class Engine(object):
     
         # 只要条件符合【current_scene与last_scene不是同一个Scene】时：
         while current_scene != last_scene:
-            # 🚧？？
+            
+            # 这里发生了什么？？
+                # CentralCorridor的enter()和Scene的enter()有什么区别？
+                    # 经试验，当父类和子类有相同名字的函数时，调用此函数名时执行的是子类的函数，也就是说这里执行的是CentralCorridor的enter()而非Scene的
             next_scene_name = current_scene.enter()
-            # ？？
+                # 也就是说，这里首先运行了CentralCorridor.enter()，由这个函数，你会对情景做出应答，然后不同的输入会return不同的值（'death', 'laser_armory', 'central_corridor'），赋给next_scene_name，然后进入下一行代码
+            
+            # 这里发生了什么？？
+                # 经过了一系列过程，对象current_scene变成了LaserArmory的实例
             current_scene = self.scene_map.next_scene(next_scene_name)
+            # 然后就又回到了while循环的开头，执行LaserArmory.enter()
+            
+            # 直到current_scene变成last_scene即Finished的实例，while循环持续下去的条件不满足了，退出while循环，继续往下面执行代码
         
         # be sure to print out the last scene
         current_scene.enter()
+        # 相当于Finished.enter()
+        # 啊，然后游戏就结束了，啊，真绕！
+        
+        # 不，还有一点地方没完全明白，游戏通关时是怎么结束的？？
+        # 哦对喔最后一次在Finish()中执行enter()不是在while循环里，然后执行完这一句后整个代码文件就执行完了，执行完了就执行完了呗。假如你的代码文件只有一行print，跑代码不就是print完之后就完了，显示maiyunfei@Ms-MacBook-Pro xxxx %嘛，傻孩子
 
 
 class Death(Scene):
@@ -65,8 +80,11 @@ class Death(Scene):
         "I have a small puppy that's better at this.",
         "You're worse than your Dad's jokes."
     ]
+    # 这是个list呀，你可以用print(dir(quips))和print(type(quips))分别查看这个对象具有的属性以及这个对象的类型
 
     def enter(self):
+        # randint(a,b): 取闭区间[a,b]内的随机整数
+        # len(self.quips)表示列表self.quips的长度
         print(Death.quips[randint(0, len(self.quips))-1])
         exit(1)
 
@@ -145,7 +163,8 @@ class LaserWeaponArmory(Scene):
             code is 3 digits.
             """))
         
-        code = f"{randint(1,9)}{randint(1,9)}{randint(1,9)}"
+        code = f"{randint(1,9)}{randint(1,9)}{randint(1,9)}" # 太魔鬼了吧，这很难通过的啊！
+        # 发现了没，f-string里的{}与eval()的作用是一样的，也就是{}里面的内容就当作代码来执行，你也可以类比LaTeX的行内公式
         print('this is code: ', code) # 调试用
         guess = input("[keypad]> ")
         guesses = 0
