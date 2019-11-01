@@ -102,8 +102,8 @@ test_data_file.close()
 
 # test the neural network
 
-# scoreboard for how well the records in the test data set
-scoreboard = []
+# scorecard for how well the records in the test data set
+scorecard = []
 
 # go through all the records in the test data set
 for record in test_data_list:
@@ -113,22 +113,39 @@ for record in test_data_list:
     correct_label = int(all_values[0])
     print("correct label:		", correct_label)
     # scale and shift the inputs
+        # 又忘了numpy.asfarray()? https://docs.scipy.org/doc/numpy/reference/generated/numpy.asfarray.html
     inputs = (numpy.asfarray(all_values[1:]) / 255.0 * 0.99) + 0.01
     # query the network
     outputs = n.query(inputs)
+    print("query the network:	\n", outputs) # 调试用
     # the index of the highest value corresponds to the label
+        # numpy.argmax: Returns the indices of the maximum values along an axis.可以发现矩阵中的最大值并返回它的位置
+        # detail: https://docs.scipy.org/doc/numpy/reference/generated/numpy.argmax.html
+        # 相似的有numpy.argmin()
     label = numpy.argmax(outputs)
     print("network's answer:	", label, '\n')
     # append correct or incorrect to list
     if (label == correct_label):
         # network's answer matches correct answer, add 1 to scoreboard
-        scoreboard.append(1)
+        scorecard.append(1)
     else:
         # network's answer doesn't match correct answer, add 0 to scoreboard
-        scoreboard.append(0)
+        scorecard.append(0)
         
         pass
     
     pass
 
-print(scoreboard)
+print(scorecard) # 调试用
+
+print("scorecard's type is ", type(scorecard)) # 调试用
+
+# calculate the performance score, the fraction of correct answers
+scorecard_array = numpy.asarray(scorecard) 
+# 虽然scorecard里面的元素不是字符，但还是要转化
+# 因为列表类没有属性'sum'，下一行代码也就跑不了
+# 类numpy.ndarray才可以这样
+print("scorecard_array's type is ", type(scorecard_array)) # 调试用
+# https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html
+
+print("performance = ", scorecard_array.sum() / scorecard_array.size)
