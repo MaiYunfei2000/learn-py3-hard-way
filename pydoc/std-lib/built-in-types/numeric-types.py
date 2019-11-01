@@ -63,4 +63,31 @@ print()
 
 # For additional numeric operations see the math(https://docs.python.org/3/library/math.html#module-math) and cmath(https://docs.python.org/3/library/cmath.html#module-cmath) modules.
 
-# 004 https://docs.python.org/3/library/stdtypes.html#bitwise-operations-on-integer-types
+# 004 Bitwise Operations on Integer Types（整数类型的按位运算） https://docs.python.org/3/library/stdtypes.html#bitwise-operations-on-integer-types
+
+## [位操作 - Wikipedia](https://zh.wikipedia.org/wiki/%E4%BD%8D%E6%93%8D%E4%BD%9C)大概理解这个就好了，先跳过，以后再回来
+
+# 005 https://docs.python.org/3/library/stdtypes.html#additional-methods-on-integer-types
+
+# 跳过
+
+# 006 Additional Methods on Float https://docs.python.org/3/library/stdtypes.html#additional-methods-on-float
+
+print("\nfloat.as_integer_ratio()\n")
+# Return a pair of integers whose ratio is exactly equal to the original float and with a positive denominator. Raises OverflowError on infinities and a ValueError on NaNs.
+
+print(2.2.as_integer_ratio())
+print(0.04.as_integer_ratio())
+print(0.5.as_integer_ratio())
+print(6.0.as_integer_ratio())
+# 这里必须是浮点数6.0而非6，否则会报SyntaxError
+
+print("\nfloat.is_integer()\n")
+# Return True if the float instance is finite with integral value, and False otherwise:
+
+print(-2.0.is_integer()) # 为什么输出了-1？
+print((-2.0).is_integer())
+print(3.2.is_integer())
+
+print("\nfloat.hex()\n")
+# https://docs.python.org/3/library/stdtypes.html#float.hex
