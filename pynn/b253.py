@@ -2,8 +2,6 @@
 
 # 就是把mnist_train_100.csv和mnist_test_10.csv换成有60000、10000条记录的minist_train.csv和minist_test.csv
 
-# 2.5.2 测试网络
-
 import numpy, scipy.special, matplotlib.pyplot
 
 class neuralNetwork:
