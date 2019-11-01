@@ -29,10 +29,11 @@
 
 ## Progress
 
-正在肝zedd、fopp、神经网络、计算神经科学。这些东西搞完之后有三（/五）个可能：①计算机科学导论；②机器学习；③配合课程和学习实践需要而转战其它语言MATLAB、R、C++
+正在肝zedd、fopp、计算神经科学。这些东西搞完之后有三（/五）个可能：①计算机科学导论；②机器学习；③配合课程和学习实践需要而转战其它语言MATLAB、R、C++
 
 ## changelog
 
+191101 消化完《Python神经网络编程》主要内容（跳过最后一章）。
 191018 正式开肝《Computational Neuroscience and Cognitive Modelling》。  
 191013 从《Python神经网络编程》开始入坑神经网络。  
 190902 此学期开始修大类课Python程序设计，教材是《Python程序设计基础》。  
