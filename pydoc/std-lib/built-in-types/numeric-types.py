@@ -90,4 +90,12 @@ print((-2.0).is_integer())
 print(3.2.is_integer())
 
 print("\nfloat.hex()\n")
-# https://docs.python.org/3/library/stdtypes.html#float.hex
+# Return a representation of a floating-point number as a hexadecimal string. For finite floating-point numbers, this representation will always include a leading 0x and a trailing p and exponent.
+
+print(5.5.hex())
+print(5.0.hex())
+print(16.0.hex())
+
+# 007 https://docs.python.org/3/library/stdtypes.html#hashing-of-numeric-types
+
+# 跳过
