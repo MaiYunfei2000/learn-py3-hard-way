@@ -79,3 +79,47 @@ lists.append(222)
 print(lists)
 lists[0].append(999)
 print(lists)
+
+#### Mutable Sequence Types 可变序列类型
+
+# https://docs.python.org/3/library/stdtypes.html#mutable-sequence-types
+
+# The operations in the following table are defined on mutable sequence types. The collections.abc.MutableSequence ABC is provided to make it easier to correctly implement these operations on custom sequence types.
+# In the table s is an instance of a mutable sequence type, t is any iterable object and x is an arbitrary object that meets any type and value restrictions imposed by s (for example, bytearray only accepts integers that meet the value restriction 0 <= x <= 255).
+
+s = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+i = 2
+j = 7
+x = 233
+t = [22, 33, 44, 55, 66]
+
+print("\nprint s: \n", s)
+print(len(s))
+
+# item i of s is replaced by x
+s[i] = x
+print(s)
+print(len(s))
+
+# slice of s from i to j is replaced by the contents of the iterable t
+s[i:j] = t # 如果列表t多加了一个数，接下来一坨代码执行后会发生什么？
+print(s)
+print(len(s))
+
+# same as s[i:j] = []
+del s[i:j]
+print(s)
+print(len(s))
+
+#
+
+#
+
+# try more
+'''
+string = 'abcdeeffffgh'
+string[5] = 'x'
+print(string)
+
+报错：TypeError: 'str' object does not support item assignment
+'''
