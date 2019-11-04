@@ -5,7 +5,9 @@
 # sudo /usr/bin/easy_install virtualenv❌行不通
 # /usr/local/bin/virtualenv ✅行得通 晕
 
-# 懒人备用：. ~/.venvs/lpthw/bin/activate
+# 懒人备忘：
+# . ~/.venvs/lpthw/bin/activate
+# python3.6 -m "nose"
 
 try:
     from setuptools import setup
