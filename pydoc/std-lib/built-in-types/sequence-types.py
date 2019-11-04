@@ -87,9 +87,11 @@ print(lists)
 # The operations in the following table are defined on mutable sequence types. The collections.abc.MutableSequence ABC is provided to make it easier to correctly implement these operations on custom sequence types.
 # In the table s is an instance of a mutable sequence type, t is any iterable object and x is an arbitrary object that meets any type and value restrictions imposed by s (for example, bytearray only accepts integers that meet the value restriction 0 <= x <= 255).
 
-s = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+s = list(range(25))
 i = 2
 j = 7
+k = 2
+n = 3
 x = 233
 t = [22, 33, 44, 55, 66]
 
@@ -111,9 +113,89 @@ del s[i:j]
 print(s)
 print(len(s))
 
-#
+print(t)
+u = t
+print("\nu: \n", u)
+del u[3:5]
+print("\nt: \n", t) # 为什么t也被删了两个？
+print("\nu: \n", u)
 
-#
+# the elements of s[i:j:k] are replaced by those of t
+# s[i:j:k]与t必须有相同个数的元素，否则会报错：ValueError: attempt to assign sequence of size 5 to extended slice of size 3
+s[i:j:k] = u
+print(s)
+
+# removes the elements of s[i:j:k] from the list
+
+del s[i:j:k]
+print(s)
+
+# appends x to the end of the sequence (same as s[len(s):len(s)] = [x])
+
+s.append(x)
+
+# removes all items from s (same as del s[:])
+
+s.clear()
+
+# creates a shallow copy (浅拷贝) of s (same as s[:])
+# 搜索之后没能一下子明白「浅拷贝」是什么意思，先放着
+
+s = list(range(25))
+print("\ns: \n", s)
+c = s.copy()
+print("\nc: \n", c)
+
+# extends s with the contents of t (for the most part the same as s[len(s):len(s)] = t)
+
+s.extend(t)
+print(s)
+# also:
+s += t
+print(s)
+
+# updates s with its contents repeated n times
+
+s *= n
+print(s)
+
+# inserts x into s at the index given by i (same as s[i:i] = [x])
+s.insert(i, x)
+print(s)
+#s.insert([i:3], [233, 332]) 额果然这样做是不行的呀
+#print(s)
+
+# retrieves the item at i and also removes it from s
+m = s.pop(i)
+print(m)
+print(s)
+
+x = 44
+# remove the first item from s where s[i] is equal to x
+s.remove(x)
+print(s)
+
+# reverses the items of s in place
+s.reverse()
+print(s)
+
+'''
+Notes:
+
+1. t must have the same length as the slice it is replacing.
+
+2. The optional argument i defaults to -1, so that by default the last item is removed and returned.
+
+3. remove() raises ValueError when x is not found in s.
+
+4. The reverse() method modifies the sequence in place for economy of space when reversing a large sequence. To remind users that it operates by side effect, it does not return the reversed sequence.
+
+5. clear() and copy() are included for consistency with the interfaces of mutable containers that don’t support slicing operations (such as dict and set). copy() is not part of the collections.abc.MutableSequence ABC, but most concrete mutable sequence classes provide it.
+
+New in version 3.3: clear() and copy() methods.
+
+6. The value n is an integer, or an object implementing __index__(). Zero and negative values of n clear the sequence. Items in the sequence are not copied; they are referenced multiple times, as explained for s * n under Common Sequence Operations.
+'''
 
 # try more
 '''
@@ -123,3 +205,6 @@ print(string)
 
 报错：TypeError: 'str' object does not support item assignment
 '''
+
+#### Lists
+# https://docs.python.org/3/library/stdtypes.html#lists
