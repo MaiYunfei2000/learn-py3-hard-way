@@ -241,3 +241,9 @@ print(example4)
 example5 = list('maiyunfei2000')
 print(example5)
 # example5 = list(iterable?)
+
+#### Tuple (元组)
+# https://docs.python.org/3/library/stdtypes.html#tuples
+
+#### Range
+# https://docs.python.org/3/library/stdtypes.html#ranges
