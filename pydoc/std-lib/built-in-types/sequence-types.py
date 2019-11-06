@@ -208,3 +208,36 @@ print(string)
 
 #### Lists
 # https://docs.python.org/3/library/stdtypes.html#lists
+
+# Lists are mutable sequences, typically used to store collections of homogeneous items (where the precise degree of similarity will vary by application).
+
+# class list([iterable])
+"""
+Lists may be constructed in several ways:
+
+Using a pair of square brackets to denote the empty list: []
+
+Using square brackets, separating items with commas: [a], [a, b, c]
+
+Using a list comprehension: [x for x in iterable]
+
+Using the type constructor: list() or list(iterable)
+"""
+
+example1 = []
+print(example1)
+example2 = ['a', 'b', 'c']
+print(example2)
+a,b,c = 1,2,3
+# Using a list comprehension (使用列表推导式)
+example3 = ['x' for a in [a, b, c]]
+example33 = [[a,b] for a in [a, b, c]] # 没明白
+print(example3)
+print(example33)
+print([[b,a] for a in [a, b, c]])
+print([[a,b] for c in [a, b, c]]) # 还是没明白……
+example4 = list(range(10))
+print(example4)
+example5 = list('maiyunfei2000')
+print(example5)
+# example5 = list(iterable?)
