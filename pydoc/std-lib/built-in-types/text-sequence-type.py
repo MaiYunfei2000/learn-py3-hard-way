@@ -30,10 +30,14 @@ print(b.casefold(), c.casefold())
 
 print('\n★ str.center(width[, fillchar])\n')
 # Return centered in a string of length width. Padding is done using the specified fillchar (default is an ASCII space). The original string is returned if width is less than or equal to len(s).
+# 返回长度为 width 的字符串，原字符串在其正中。 使用指定的 fillchar 填充两边的空位（默认使用 ASCII 空格符）。 如果 width 小于等于 len(s) 则返回原字符串的副本。
 
 test = 'test aaa bbb ccc'
 print(test.center(15,"c"))
-# 🚧怎么捣鼓都没高明白干啥用的……
+# 怎么捣鼓都没高明白干啥用的……
+
+# bingo: 随便搞搞参数就明白了~
+print("开始".center(scale//5,'-'))
 
 print('\n★ str.count(sub[, start[, end]])\n')
 # Return the number of non-overlapping occurrences of substring sub in the range [start, end]. Optional arguments start and end are interpreted as in slice notation.
