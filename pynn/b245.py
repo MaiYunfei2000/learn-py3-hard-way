@@ -22,10 +22,18 @@ class neuralNetwork:
         self.who = numpy.random.normal(0, pow(self.onodes, -0.5), (self.onodes, self.hnodes))
         
         # activation function is the sigmoid function
+        # [scipy.special.expit — SciPy v0.14.0 Reference Guide](https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.special.expit.html)
+        # [4. More Control Flow Tools — Python 3.8.0 documentation](https://docs.python.org/3/tutorial/controlflow.html)
         self.activation_function = lambda x: scipy.special.expit(x)
         # lambda也是一种创建函数的方式，只不过相较def()没有名字，等等，因此创建起来较方便快捷；有些程序员喜欢称其为匿名函数，不过这里分配了一个名字“self.activation_function”（注意，名字后无括号，否则会报错：SyntaxError: can't assign to function call）
         # 这个函数接受x，返回scipy.special.expit(x)，是不是更加有数学函数的感觉了？
         # 之后要使用sigmoid函数，调用self.activation_function()即可（注意，这里有括号了！）
+        # 此代码的效果等同于
+        """
+        def self.activation_function(x):
+            return scipy.special.expit(x)
+        """
+        # 使用方式与lambda函数相同
         
         pass
         
