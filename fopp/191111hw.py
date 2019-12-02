@@ -3,7 +3,7 @@
 # text is not allowed
 def filter_text(v):
     
-    try: return int(v)
+    try: return float(v)
     except ValueError:
         print("请输入一个数！")
         exit(0)
