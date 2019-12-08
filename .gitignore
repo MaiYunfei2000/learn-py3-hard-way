@@ -34,3 +34,4 @@ fopp/ex03-5.py
 pynn/makeyourownneuralnetwork-master/mnist_dataset/mnist_test.csv
 pynn/makeyourownneuralnetwork-master/mnist_dataset/mnist_train.csv
 *.pptx
+fopp/result.txt
