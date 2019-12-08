@@ -126,7 +126,7 @@ print('maiyunfei2000'.isalnum())
 print('maiyunfei008!'.isalnum())
 print(''.isalnum())
 
-print('\n★ isalpha()\n')
+print('\n★ str.isalpha()\n')
 # Return true if all characters in the string are alphabetic and there is at least one character, false otherwise. Alphabetic characters are those characters defined in the Unicode character database as “Letter”, i.e., those with general category property being one of “Lm”, “Lt”, “Lu”, “Ll”, or “Lo”. Note that this is different from the “Alphabetic” property defined in the Unicode Standard.
 
 print('maiyunfei'.isalpha())
