@@ -1,0 +1,32 @@
+[
+    {
+        "city": "Beijing",
+        "dingji": "121.4",
+        "huanbi": "101.5",
+        "tongbi": "120.7"
+    },
+    {
+        "city": "Shanghai",
+        "dingji": "127.8",
+        "huanbi": "101.2",
+        "tongbi": "127.3"
+    },
+    {
+        "city": "Guangzhou",
+        "dingji": "120",
+        "huanbi": "101.3",
+        "tongbi": "119.4"
+    },
+    {
+        "city": "Shenzhen",
+        "dingji": "145.5",
+        "huanbi": "102",
+        "tongbi": "140.9"
+    },
+    {
+        "city": "Shenyang",
+        "dingji": "101.6",
+        "huanbi": "100.1",
+        "tongbi": "101.4"
+    }
+]
