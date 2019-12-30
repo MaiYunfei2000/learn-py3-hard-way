@@ -14,6 +14,11 @@ y = 'b'
 s = [0, 2, 4, 2, 'a', 'c', 'fff']
 n = 3
 
+def stdtest(a):
+    print(a)
+    print(type(a))
+    print('✨')
+
 # x in s: True if an item of s is equal to x, else False
 
 print(x in s, y in s)
@@ -257,6 +262,15 @@ Tuples may be constructed in a number of ways:
 """
 
 # 最大的区别就是元组里的元素自元组生成后不可改变
+
+d = ()
+stdtest(d)
+e = ('a',)
+stdtest(e)
+f = ('233', '22', '33')
+stdtest(f)
+g = tuple(['233', '22', '33'])
+stdtest(g)
 
 #### Range
 # https://docs.python.org/3/library/stdtypes.html#ranges
