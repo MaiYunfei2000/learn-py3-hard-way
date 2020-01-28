@@ -1,4 +1,5 @@
 ### 3.6.2 format()方法的格式控制(p.86)
+# more: https://docs.python.org/zh-cn/3/library/string.html#format-string-syntax
 
 s = "PYTHON"
 print("{0:30}".format(s)) # 默认左对齐

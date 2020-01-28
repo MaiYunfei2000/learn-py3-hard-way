@@ -13,6 +13,8 @@ while True:
         exit(0)
     else:
         print('其它字符')
+
+# 可以改进：把exit的判断放在if那里，然后elif那里就不用and balabala...
   
 # 2.P121 4.1题 猜数游戏
 

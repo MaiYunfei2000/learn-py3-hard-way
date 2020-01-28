@@ -249,6 +249,7 @@ print(example5)
 
 #### Tuple (元组)
 # https://docs.python.org/3/library/stdtypes.html#tuples
+# https://docs.python.org/zh-cn/3/tutorial/datastructures.html#tuples-and-sequences
 
 """
 class tuple([iterable])
