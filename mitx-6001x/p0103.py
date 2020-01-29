@@ -11,12 +11,17 @@
 
 ##### 思路1：最短为2个字符，最长为整个字符串，暴力拎出一个个单词，判断是否完全按顺序。从2至i不断变大即可。
 
-#s = 'rlhkdzgipromy' gipr
-#s = 'suvynfmooabtdnplsunim' suvy
+s = 'rlhkdzgipromy' # gipr
+s = 'suvynfmooabtdnplsunim' # suvy
 s = 'zyxwvutsrqponmlkjihgfedcba' # z
+#s = 'abcdefghijklmnopq'
+
+#s = "azcbobobegghaklabcfhhhhhhh"
 # 15个，第一遍，每个子串长度为2，其中最长的为abcfhhhhhhh 
 
 ##########
+
+print("\n### Version 1 ###\n")
 
 alphabet_list = ("""a b c d e f g h i j k l m n o p q r s t u v w x y z
                  """.split())
@@ -57,3 +62,38 @@ if is_alphabetical_order(substring):
     longest_substr.append(substring)
 
 print("Longest substring in alphabetical order is:", longest_substr[0])
+
+### Without dict
+
+print("\n### Version 2.0 ###\n")
+
+# i means "index"
+def is_alphabetical_order(string):
+    for i in range(len(string)):
+        if (len(string) != 1 and ((i == 0 and string[0] > string[1]) or 
+                (i != 0 and string[i-1] > string[i]))):
+            return False
+    return True
+
+longest_substr = []
+for len_substr in range(1, len(s)+1):
+    longest_this_loop = []
+    
+    if len_substr == len(s) and is_alphabetical_order(s):
+        longest_this_loop = [s]
+    
+    for word_index in range(len(s) - len_substr):
+        substring = s[word_index:word_index+len_substr]
+    
+        if is_alphabetical_order(substring):
+            longest_this_loop.append(substring)
+    
+    if longest_this_loop != []:
+        longest_substr = longest_this_loop
+
+print("Longest substring in alphabetical order is:", longest_substr[0])
+
+
+
+print("\n### Version 2.1 ###\n")
+
