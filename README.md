@@ -4,7 +4,9 @@
 
 | 文件夹名 | 相应读物或资源 |
 | --- | --- |
-| fopp | 嵩天, 礼欣, 黄天羽《Python语言程序设计基础(第2版)》及校内Python课的作业|
+| dlfr | François Chollet《Python深度学习》|
+| fopp | 嵩天 等《Python语言程序设计基础(第2版)》及校内 Python 课的作业|
+| MITx | MIT Computational Thinking X Series 于 edX 平台|
 | pydoc | Python官方文档 |
 | pynn | Tariq Rashid《Python神经网络编程》 |
 | zedd | Zedd Shaw《“笨方法”学Python3》 |
@@ -21,10 +23,12 @@
 
 ## changelog
 
-- 191230 Python程序设计期末考，fopp结束。进入二周目。
+- 200201 《Python深度学习》：开始入坑。
+- 200123 MITx 6.00.1x 开课。
+- 191230 「Python程序设计」期末考，fopp结束。进入二周目。
 - 191104 《“笨方法”学Python3》：一周目结束，卡在ex48（ex22被跳过）。
 - 191101 《Python神经网络编程》：消化完主要内容（除最后一章被粗略扫过）。
 - 191018 《Computational Neuroscience and Cognitive Modelling》：开始入坑。
 - 191013 《Python神经网络编程》：开始入坑。  
-- 190902 此学期开始修大类课Python程序设计，教材是《Python程序设计基础》。  
+- 190902 此学期开始修大类课「Python程序设计」，教材是《Python程序设计基础》。  
 - 190211 创建仓库，开始入门Python3，按着《“笨方法”学Python3》的指导。  
