@@ -83,12 +83,13 @@ test            testtest        testtesttest
 # 🚧没搞懂
 
 print('\n★ str.find(sub[, start[, end]])\n')
-# Return the lowest index in the string where substring sub is found within the slice s[start:end]. Optional arguments start and end are interpreted as in slice notation. Return -1 if sub is not found.
+# Return the lowest index in the string where substring sub is found within the slice s[start:end]. Optional arguments start and end are interpreted as in slice notation. **Return -1 if sub is not found.**
 
 print(test.find('ccc')) # 返回的是13（而第一个c是第14个字符）
 print(test.find('c', 13)) # 返回13
 print(test.find('c', 14)) # 返回14
 print(test.find('test')) # 返回0即首位
+print("abc".find('!')) # 返回-1
 
 print('\n★ str.format(*args, **kwargs)\n')
 # Perform a string formatting operation. The string on which this method is called can contain literal text or replacement fields delimited by braces {}. Each replacement field contains either the numeric index of a positional argument, or the name of a keyword argument. Returns a copy of the string where each replacement field is replaced with the string value of the corresponding argument.
