@@ -35,6 +35,7 @@ reverse_word_index = dict(
     ## 索引减去了3，因为0、1、2为元数据"padding", "start of sequence", "unknown"分别保留的索引
 decoded_review = ' '.join(
     [reverse_word_index.get(i - 3, '?') for i in train_data[0]])
+# 想查看的话就改改代码print出来。
 
 
 
@@ -126,8 +127,10 @@ while True:
 
 ## 将原始训练数据留出10000个样本作为验证集
 
-# 截取向量x_train的后10000个单元成为一个向量，赋给变量x_val
+# 截取向量x_train的前10000个单元成为一个向量，赋给变量x_val（x validation）
+    # 用于验证
 x_val = x_train[:10000]
+# 10000之后的（即后15000个）数据用于训练
 partial_x_train = x_train[10000:]
 
 # 这是标签数据
@@ -137,36 +140,104 @@ partial_y_train = y_train[10000:]
 
 ### 代码清单3-8 训练模型
 
+# 访问https://keras.io/models/model/#fit，见参数validation_data的介绍
 history = model.fit(partial_x_train, # 训练数据
                     partial_y_train, # 训练标签
                     epochs=20, # 世代数
                     batch_size=512, # 批量的大小
                     validation_data=(x_val, y_val)) # 用于验证数据的参数
 
+# 调用对象history的属性history
 history_dict = history.history
 # 打印字典history_dict的键
 print(history_dict.keys())
-## 返回：dict_keys(['val_acc', 'acc', 'val_loss', 'loss'])
+## 返回：dict_keys(['val_loss', 'val_accuracy', 'loss', 'accuracy'])
 
 # 再多打印些东西来玩玩
-print(history_dict)
+#print(history_dict)
 
 
 ### 代码清单3-9 绘制训练损失和验证损失
 
 import matplotlib.pyplot as plt
 
-history_dict = history.history
+# 将此字典的键'loss'的值赋给loss_values
+    # 值为列表：[0.48860187877019245, 0.2786540919780731, 0.20393863665262857, 0.16096781384944917, 0.13419080274105072, 0.11122744545936585, 0.09276039755741755, 0.07568348109324773, 0.06353400830427805, 0.05362849275271098, 0.04227345239321391, 0.034643668029705685, 0.028636248785257338, 0.021579427936673164, 0.017057158918182054, 0.016703729203840098, 0.013262132791678111, 0.006358744574089845, 0.012870334754635891, 0.0036629460159689187]
 loss_values = history_dict['loss']
+# 将此字典的键'val_loss'（即validation loss）的值赋给loss_values
+    # 值为列表：[0.3728204085826874, 0.3218524001598358, 0.28589079728126526, 0.29341552896499634, 0.2873787776470184, 0.31453771681785586, 0.31927712626457216, 0.3388991364955902, 0.3677032395362854, 0.3875583678722382, 0.4129551306724548, 0.4478620815753937, 0.48981264986991885, 0.5082764040946961, 0.5765581204891205, 0.5639249904632568, 0.5991898749351502, 0.6272318345069885, 0.6646615933418274, 0.6888501318931579]
 val_loss_values = history_dict['val_loss']
 
+# 世代：从1到len(loss_values)即20
 epochs = range(1, len(loss_values) + 1)
 
+# 绘制以epochs为横轴，loss_values为纵轴的曲线，样式为'bo'即蓝色圆点，图例标签为'Training loss'
 plt.plot(epochs, loss_values, 'bo', label='Training loss')
 plt.plot(epochs, val_loss_values, 'b', label='Validation loss')
 plt.title('Training and validation loss')
 plt.xlabel('Epochs')
 plt.ylabel('Loss')
+# [matplotlib.pyplot.legend — Matplotlib 3.1.2 documentation](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.legend.html)
 plt.legend()
 
 plt.show()
+
+# 「验证」到底是什么意思？是不是训练时一并间隔进行的迷你测试？
+# 训练损失越来越小很好理解。可为什么验证损失是递增的？这意味着什么？
+
+## 模型在训练数据上的表现越来越好，但在前所未见的数据上不一定表现得越来越好。
+## 准确来说，这是「过拟合」(overfit)：在第二轮之后，对训练数据过度优化，最终学到的仅对于训练数据，无法泛化到训练集之外的数据。
+
+
+### 代码清单3-10 绘制训练精度和验证精度
+
+# 清空图像
+plt.clf()
+acc = history_dict['accuracy']
+val_acc = history_dict['val_accuracy']
+
+plt.plot(epochs, acc, 'bo', label='Training acc')
+plt.plot(epochs, val_acc, 'b', label='Validation acc')
+plt.title('Training and validation accuracy')
+plt.xlabel('Epochs')
+plt.ylabel('Accuracy')
+plt.legend()
+
+plt.show()
+
+# 为什么验证精度停留在初始水平稳定不变，甚至微微地下降？
+
+
+### 代码清单3-11 从头开始重新训练一个模型
+
+model = models.Sequential()
+model.add(layers.Dense(16, activation='relu', input_shape=(10000,)))
+model.add(layers.Dense(16, activation='relu'))
+model.add(layers.Dense(1, activation='sigmoid'))
+
+model.compile(optimizer='rmsprop',
+              loss='binary_crossentropy',
+              metrics=['accuracy'])
+
+model.fit(x_train, y_train, epochs=4, batch_size=512)
+results = model.evaluate(x_test, y_test)
+print(results)
+
+
+#### 3.4.5 使用训练好的网络在新数据上生成预测结果
+
+print(model.predict(x_test))
+# 会返回一个array，每个元素为(0,1)之间的小数，值越高代表网络预判的该样本为正面评论的可能越大。
+
+
+
+#### 3.4.6 进一步的实验
+
+"""
+可以尝试：
+
+- 改变隐藏层数
+- 改变某隐藏层的单元数
+- 改变损失函数，比如改为mse
+- 改变激活函数，比如改为tanh
+"""
