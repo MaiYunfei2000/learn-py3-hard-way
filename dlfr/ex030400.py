@@ -72,3 +72,101 @@ y_test = np.asarray(test_labels).astype('float32')
 
 #### 3.4.3 构建网络
 
+
+### 代码清单3-3 模型定义
+
+from keras import models
+from keras import layers
+
+model = models.Sequential()
+# 按顺序叠加一个层。类型为Dense，节点16个，激活函数为relu，最后一个参数是？
+    # 哦输入层的形状，即10000个节点。用于接收10000维的向量。
+model.add(layers.Dense(16, activation='relu', input_shape=(10000,)))
+## relu：整流线性单元(rectified linear unit)，激活函数之一。将负值归零。
+model.add(layers.Dense(16, activation='relu'))
+model.add(layers.Dense(1, activation='sigmoid'))
+
+
+### 代码清单3-4 编译模型
+
+# 优化器：'rmsprop'；损失函数：二元交叉熵；指标函数：准确率。
+model.compile(optimizer='rmsprop',
+              loss='binary_crossentropy',
+              metrics=['accuracy'])
+# 噢，指标函数就是对神经网络性能的度量。与Tariq里面讲的性能/绩效(performance)是一回事。
+
+
+## 有时会希望自定义优化器的参数，或传入自定义的损失函数或指标函数。
+
+### 代码清单3-5 配置优化器
+while True:
+    break
+    
+    from keras import optimizers
+    
+    model.compile(optimizer=optimizer.RMSprop(lr=0.001),
+                  loss='binary_crossentropy',
+                  metrics=['accuracy']) # 后两行没变
+
+## 代码清单3-6 使用自定义的损失和指标
+while True:
+    break
+    
+    from keras import losses
+    from keras import metrics
+    
+    model.compile(optimizer=optimizer.RMSprop(lr=0.001),
+                  loss=losses.binary_crossentropy,
+                  metrics=[metrics.binary_accuracy])
+
+
+#### 3.4.4 验证你的方法
+
+### 代码清单3-7 留出验证集
+
+## 将原始训练数据留出10000个样本作为验证集
+
+# 截取向量x_train的后10000个单元成为一个向量，赋给变量x_val
+x_val = x_train[:10000]
+partial_x_train = x_train[10000:]
+
+# 这是标签数据
+y_val = y_train[:10000]
+partial_y_train = y_train[10000:]
+
+
+### 代码清单3-8 训练模型
+
+history = model.fit(partial_x_train, # 训练数据
+                    partial_y_train, # 训练标签
+                    epochs=20, # 世代数
+                    batch_size=512, # 批量的大小
+                    validation_data=(x_val, y_val)) # 用于验证数据的参数
+
+history_dict = history.history
+# 打印字典history_dict的键
+print(history_dict.keys())
+## 返回：dict_keys(['val_acc', 'acc', 'val_loss', 'loss'])
+
+# 再多打印些东西来玩玩
+print(history_dict)
+
+
+### 代码清单3-9 绘制训练损失和验证损失
+
+import matplotlib.pyplot as plt
+
+history_dict = history.history
+loss_values = history_dict['loss']
+val_loss_values = history_dict['val_loss']
+
+epochs = range(1, len(loss_values) + 1)
+
+plt.plot(epochs, loss_values, 'bo', label='Training loss')
+plt.plot(epochs, val_loss_values, 'b', label='Validation loss')
+plt.title('Training and validation loss')
+plt.xlabel('Epochs')
+plt.ylabel('Loss')
+plt.legend()
+
+plt.show()
