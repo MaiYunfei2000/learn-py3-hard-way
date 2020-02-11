@@ -172,7 +172,8 @@ test_labels_copy = copy.copy(test_labels)
 # https://numpy.org/devdocs/reference/random/generated/numpy.random.shuffle.html
 np.random.shuffle(test_labels_copy)
 hits_array = np.array(test_labels) == np.array(test_labels_copy)
-print(hist_array)
+# 果然跟matlab矩阵一样，是对每个元素进行比较然后返回布尔值到相应位置上
+print(hits_array)
 print(float(np.sum(hits_array)) / len(test_labels))
 ## 0.18655387355298308
 
