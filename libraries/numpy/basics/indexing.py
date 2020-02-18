@@ -71,3 +71,24 @@ print(y[1:5:2,::3])
 #### Index arrays
 
 # https://docs.scipy.org/doc/numpy/user/basics.indexing.html#index-arrays
+
+# NumPy arrays may be indexed with other arrays (or any other sequence- like object that can be converted to an array, such as lists, with the exception of tuples; see the end of this document for why this is). The use of index arrays ranges from simple, straightforward cases to complex, hard-to-understand cases. For all cases of index arrays, what is returned is a copy of the original data, not a view as one gets for slices.
+
+# Index arrays must be of integer type. Each value in the array indicates which value in the array to use in place of the index. To illustrate:
+x = np.arange(10,1,-1)
+print(x)
+# x[a](x和a都是np数组)：返回一个与a同型的数组，数组的元素是以a的元素为索引的x的元素值
+print(x[np.array([3, 3, 1, 8])])
+# 相当于np.array(x[3], x[3], x[1], x[8])
+# The index array consisting of the values 3, 3, 1 and 8 correspondingly create an array of length 4 (same as the index array) where each index is replaced by the value the index array has in the array being indexed.
+
+# Negative values are permitted and work as they do with single indices or slices:
+print(x[np.array([3, 3, -3, 8])])
+
+# Generally speaking, what is returned when index arrays are used is an array with the same shape as the index array, but with the type and values of the array being indexed. As an example, we can use a multidimensional index array instead:
+print(x[np.array([[1,1],[2,3]])])
+# 那如果x是多维数组呢❓
+
+#### Indexing Multi-dimensional arrays
+
+# https://docs.scipy.org/doc/numpy/user/basics.indexing.html#indexing-multi-dimensional-arrays
