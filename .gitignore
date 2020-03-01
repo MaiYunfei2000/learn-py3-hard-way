@@ -36,3 +36,4 @@ pynn/makeyourownneuralnetwork-master/mnist_dataset/mnist_train.csv
 *.pptx
 fopp/result.txt
 *.txt
+*.pyc
