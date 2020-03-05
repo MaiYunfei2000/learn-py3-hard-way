@@ -238,7 +238,9 @@ class CiphertextMessage(Message):
             self.message_text (string, determined by input text)
             self.valid_words (list, determined using helper function load_words)
         '''
-        pass #delete this line and replace with your code here
+        Message.__init__(self, text)
+        self.message_text = text
+        self.valid_words = load_words("words.txt")
 
     def decrypt_message(self):
         '''
@@ -256,8 +258,19 @@ class CiphertextMessage(Message):
         Returns: a tuple of the best shift value used to decrypt the message
         and the decrypted message text using that shift value
         '''
-        pass #delete this line and replace with your code here
+        count = {}
+        for shift in range(0, 26):
+            decrypted_message = self.apply_shift(shift)
+            split_message = decrypted_message.split(" ")
+            word_count = 0
+            for term in split_message:
+                if is_word(self.valid_words, term):
+                    word_count += 1
+            count[word_count] = shift
+        best_shift = count[max(list(count.keys()))]
+        return (best_shift, self.apply_shift(best_shift))
 
+"""
 #Example test case (PlaintextMessage)
 plaintext = PlaintextMessage('hello', 2)
 print('Expected Output: jgnnq')
@@ -267,3 +280,29 @@ print('Actual Output:', plaintext.get_message_text_encrypted())
 ciphertext = CiphertextMessage('jgnnq')
 print('Expected Output:', (24, 'hello'))
 print('Actual Output:', ciphertext.decrypt_message())
+"""
+
+"""
+example = PlaintextMessage("hello", 0)
+print(example.get_message_text())
+print(example.get_message_text_encrypted())
+decrypted = CiphertextMessage(example.get_message_text_encrypted())
+print(decrypted.decrypt_message())
+"""
+
+############################################################
+def decrypt_story():
+    """
+    return the appropriate shift value and unencrypted story string
+    """
+    decrypted_story = CiphertextMessage(get_story_string())
+    
+    return decrypted_story.decrypt_message()
+############################################################
+print(decrypt_story())
+
+def quick_decrypt(text):
+    encrypt = CiphertextMessage(text)
+    print(encrypt.decrypt_message())
+quick_decrypt('Yja fq vjga ecnn kv Qxcnvkpg? Vjg owi ku tqwpf. Vjg lct ku tqwpf. Vjga ujqwnf ecnn kv Tqwpfvkpg!')
+quick_decrypt("sub! Cemr kx kgocywo vokbxsxq ohzobsoxmo yp dro eco yp zidryx mvkcc. Kvcy dsoc lkmu dy ofobidrsxq go rkfo vokbxon cy pkb. Qeocc S'w pkvsxq sx vyfo gsdr dro droco mynoc...")
