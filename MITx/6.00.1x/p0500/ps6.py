@@ -151,7 +151,7 @@ def mini_debug1(text, shift):
     print("shifted: ", message.apply_shift(shift))
 
 #mini_debug1("we are taking 6.00.1x", 18)
-mini_debug1("hello", 0)
+#mini_debug1("hello", 0)
 
 class PlaintextMessage(Message):
     def __init__(self, text, shift):
@@ -171,7 +171,11 @@ class PlaintextMessage(Message):
         Hint: consider using the parent class constructor so less 
         code is repeated
         '''
-        pass #delete this line and replace with your code here
+        Message.__init__(self, text)
+        self.valid_words = load_words("words.txt")
+        self.shift = shift
+        self.encrypting_dict = self.build_shift_dict(shift)
+        self.message_text_encrypted = self.apply_shift(shift)
 
     def get_shift(self):
         '''
@@ -179,7 +183,7 @@ class PlaintextMessage(Message):
         
         Returns: self.shift
         '''
-        pass #delete this line and replace with your code here
+        return self.shift
 
     def get_encrypting_dict(self):
         '''
@@ -187,7 +191,7 @@ class PlaintextMessage(Message):
         
         Returns: a COPY of self.encrypting_dict
         '''
-        pass #delete this line and replace with your code here
+        return self.encrypting_dict.copy()
 
     def get_message_text_encrypted(self):
         '''
@@ -195,7 +199,7 @@ class PlaintextMessage(Message):
         
         Returns: self.message_text_encrypted
         '''
-        pass #delete this line and replace with your code here
+        return self.message_text_encrypted
 
     def change_shift(self, shift):
         '''
@@ -208,8 +212,20 @@ class PlaintextMessage(Message):
 
         Returns: nothing
         '''
-        pass #delete this line and replace with your code here
+        assert shift >= 0 and shift < 26
+        self.shift = shift
+        self.encrypting_dict = self.build_shift_dict(shift)
+        self.message_text_encrypted = self.apply_shift(shift)
 
+# debug use
+"""
+text = "1.hello!!"
+shift = 7
+message = PlaintextMessage(text, shift)
+print("get_shift(): ", message.get_shift())
+message.change_shift(20)
+print("get_shift(): ", message.get_shift())
+"""
 
 class CiphertextMessage(Message):
     def __init__(self, text):
