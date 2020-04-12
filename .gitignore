@@ -37,3 +37,5 @@ pynn/makeyourownneuralnetwork-master/mnist_dataset/mnist_train.csv
 fopp/result.txt
 *.txt
 *.pyc
+MITx/6.00.2x/pset2/ps2_visualize.py
+MITx/6.00.2x/pset1/ps1_partition.py
