@@ -78,8 +78,10 @@ maxlen = 20
 print("x_train[0]:", x_train[0])
 print("y_train:", y_train)
 print("x_train.shape, y_train.shape:", x_train.shape, y_train.shape)
+# x_train.shape, y_train.shape: (25000,) (25000,)
 
 ## 将整数列表转换成形状为(samples, maxlen)的二维整数张量
+#（若把列表直接转换为张量，则张量本来就是二维的）
 # https://keras.io/preprocessing/sequence/ 然后手动查找 pad_sequences
     # pad_sequences(sequences, maxlen=None, dtype='int32', padding='pre', truncating='pre', value=0.0)
     # 这个函数将[具有num_samples个整数序列（列表）]的列表 transforms 为一个形状为 (num_samples, num_timesteps) 的 2D NumPy array 。
@@ -88,18 +90,19 @@ print("x_train.shape, y_train.shape:", x_train.shape, y_train.shape)
     # 长度大于 num_timesteps 的序列则会被截断，至于怎么截断（在哪个位置截断）则依次取决参数 truncating，补全（见上一行）的方式则取决于 padding 参数。这两个参数的值默认都是 'pre' 。
         # padding 参数：'pre'在前面填补；'post'在后面填补。
         # truncating 参数：'pre'切割掉前面的；'post'切割掉后面的。
-    """你捣鼓捣鼓就明白了：
+    
+"""
+你捣鼓捣鼓就明白了：
     >>> a = [[1,1,1]]
     >>> a_i = preprocessing.sequence.pad_sequences(a, maxlen=5)
     >>> a_i
     array([[0, 0, 1, 1, 1]], dtype=int32)
-    >>> a_ii = preprocessing.sequence.pad_sequence(a, maxlen=5, padding='post', value=3.0)
     >>> a_ii = preprocessing.sequence.pad_sequences(a, maxlen=5, padding='post', value=3.0)
     >>> a_ii
     array([[1, 1, 1, 3, 3]], dtype=int32)
     >>> preprocessing.sequence.pad_sequences(a_ii, maxlen=2, truncating='post')
     array([[1, 1]], dtype=int32)
-    """
+"""
 # maxlen就是前面设定的那个20。这里把第1轴形状变为20，也就是指截取文本的前20个单词吗？还是会干什么（某种形式的压缩）？
     # 截取文本的前20个单词。
     # 为什么是这样子做？为什么是20而不是其它？为什么是截掉后面的，而不是截掉前面的？🚧
@@ -123,6 +126,8 @@ x_test = preprocessing.sequence.pad_sequences(x_test, maxlen=maxlen)
 
 # 原来就是这样嘛！所以要认真阅读官方文档！根本就不复杂不玄乎！
 
+# 一句话， keras.preprocessing.sequence.pad_sequences() 就是个简单的文本处理方法，
+# 生成一个文本修剪/增补得整整齐齐的矩阵。
 
 
 ### 6-7 在IMDB数据上使用Embedding层和分类器
@@ -144,7 +149,7 @@ model.add(Flatten())
 # keras.layers.Flatten(data_format=None)
     # Flattens the input. Does not affect the batch size.
     # 例子：
-    """
+"""
     model = Sequential()
     model.add(Conv2D(64, (3, 3),
                      input_shape=(3, 32, 32), padding='same',))
@@ -152,7 +157,7 @@ model.add(Flatten())
 
     model.add(Flatten())
     # now: model.output_shape == (None, 65536)
-    """
+"""
 # 为什么要展平成二维张量呢？因为神经网络只能接收一维张量鸭！
 
 
