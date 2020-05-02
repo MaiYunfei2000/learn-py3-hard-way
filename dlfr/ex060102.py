@@ -61,6 +61,43 @@ assert output_array.shape == (32, 10, 64)
 
 """
 
+"""
+>>> from keras.layers import Embedding
+Using TensorFlow backend.
+>>> from keras.models import Sequential
+>>> import numpy as np
+>>> 
+>>> model = Sequential()
+>>> model.add(Embedding(50, 4, input_length=3))
+2020-05-01 19:34:42.286267: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2020-05-01 19:34:42.336268: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x138bb2bd0 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2020-05-01 19:34:42.336297: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+>>> input = np.random.randint(50, size=(3, 3))
+>>> input
+array([[33, 29, 27],
+       [21, 30, 33],
+       [21, 25,  1]])
+>>> model.compile('rmsprop', 'mse')
+>>> output = model.predict(input)
+>>> output
+array([[[-0.00064989, -0.00865524, -0.01081327, -0.00142449],
+        [ 0.04530859, -0.0263384 ,  0.00992405,  0.02901934],
+        [ 0.04503688,  0.0497301 ,  0.02518627, -0.03207614]],
+
+       [[ 0.01428035, -0.04264001, -0.03240258, -0.01923723],
+        [ 0.03808755, -0.01943175, -0.04498769,  0.03334048],
+        [-0.00064989, -0.00865524, -0.01081327, -0.00142449]],
+
+       [[ 0.01428035, -0.04264001, -0.03240258, -0.01923723],
+        [ 0.01551538, -0.0406083 , -0.013407  ,  0.03925775],
+        [ 0.02464989,  0.03409109, -0.02250344, -0.00930003]]],
+      dtype=float32) 
+"""
+# 每个数字都被“升维打击”打开了花，
+# 比如第一个数字 33 变成了 [-0.00064989, -0.00865524, -0.01081327, -0.00142449]
+# 为什么说这样是变稠密了？？？
+# 为什么要这样处理？
+
 ### 6-6 加载IMDB数据，准备用于Embedding层
 
 from keras.datasets import imdb
@@ -137,10 +174,13 @@ from keras.layers import Flatten, Dense, Embedding
 
 model = Sequential()
 ## 制定Embedding层的最大输入长度，以便后面将嵌入输入展平。Embedding层激活的形状为(samples, maxlen, 8)
+    # 啥意思？？？层激活是什么东西？为什么这玩意是三维张量？🚧
+model.add(Embedding(10000, 8, input_length=maxlen))
 # 输入张量有10000的词汇量，输出张量的第2轴具有8个维度，输入张量的第1个轴有maxlen及20个维度
 model.add(Embedding(10000, 8, input_length=maxlen))
 
 ## 将三维的嵌入张量展平成形状为 (samples, maxlen * 8) 的二维张量
+# 相当于把这个张量（你可以想象一驮八层的矩形面皮儿）沿着第1轴摊开了（面皮沿着宽度所在的轴，铺平在一个平面上）——嗯，就是降维打击
 # 这个 Flatten 层紧随 Embedding 层其后，
     # 接收 Embedding 层的输入作为 Flatten 层的输出。
 model.add(Flatten())
