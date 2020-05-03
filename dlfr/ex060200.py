@@ -52,6 +52,8 @@ state_t = np.zeros((output_features,))
 W = np.random.random((output_features, input_features)) # (64, 32)
 U = np.random.random((output_features, output_features)) # (64, 64)
 b = np.random.random((output_features,)) # (64,)
+# 🚧 W, U, b 具体代表什么与什么之间的连接权重呢？
+# 参见图 6-10 的中间的矩形里的内容。
 
 successive_outputs = []
 ## input_t是shape=(input_features,)的向量
