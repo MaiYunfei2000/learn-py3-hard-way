@@ -39,3 +39,12 @@ fopp/result.txt
 *.pyc
 MITx/6.00.2x/pset2/ps2_visualize.py
 MITx/6.00.2x/pset1/ps1_partition.py
+dlfr/pre_trained_glove_model.h5
+dlfr/my_log_dir/train/keras_embedding.ckpt-7.data-00000-of-00001
+*.trace
+*.data-00000-of-00001
+*.v2
+*.index
+*.pbtxt
+dlfr/my_log_dir/train/checkpoint
+dlfr/my_log_dir/train/events.out.tfevents.1588685448.MYFs-MacBook-Pro.local.profile-empty
