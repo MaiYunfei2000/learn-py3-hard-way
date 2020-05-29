@@ -48,3 +48,4 @@ dlfr/my_log_dir/train/keras_embedding.ckpt-7.data-00000-of-00001
 *.pbtxt
 dlfr/my_log_dir/train/checkpoint
 dlfr/my_log_dir/train/events.out.tfevents.1588685448.MYFs-MacBook-Pro.local.profile-empty
+MITx/6.00.2x/pset4/data.csv
