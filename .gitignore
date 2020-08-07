@@ -50,3 +50,4 @@ dlfr/my_log_dir/train/checkpoint
 dlfr/my_log_dir/train/events.out.tfevents.1588685448.MYFs-MacBook-Pro.local.profile-empty
 MITx/6.00.2x/pset4/data.csv
 dlfr/ex020100_test.py
+libraries/requests/example/test.csv
