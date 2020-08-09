@@ -82,3 +82,5 @@ q.send_keys(Keys.RETURN)
 driver.close()
 
 # COOL!!!
+
+# More action: https://selenium-python.readthedocs.io/api.html

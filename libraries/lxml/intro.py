@@ -4,14 +4,10 @@ from lxml import etree
 
 ###########################################################
 
-"""
-
 # 声明一段 HTML 文本
 text = '''
 <div>
-    # <ul>: 定义无序列表
     <ul>
-        # <li>: 列表的具体一条条项目
          <li class="item-0"><a href="https://ask.hellobi.com/link1.html">first item</a></li>
          <li class="item-1"><a href="https://ask.hellobi.com/link2.html">second item</a></li>
          <li class="item-inactive"><a href="https://ask.hellobi.com/link3.html">third item</a></li>
@@ -27,7 +23,7 @@ html = etree.HTML(text)
 # 输出修正后的 HTML 代码，不过是 bytes 类型，可用 decode() 转成 str 类型
     # bytes 类型：https://docs.python.org/zh-cn/3/library/stdtypes.html?highlight=bytes#bytes
 result = etree.tostring(html)
-print(type(result))
+print("type(result):", type(result))
 print(result.decode('utf-8'))
 # 可见 li 节点的标签被补全，且自动添加了 body 和 html 节点
     # （补全有什么用呢？）@[html与xml的区别与联系（笔记） - 知乎](https://zhuanlan.zhihu.com/p/38355440#:~:text=XML%E8%A2%AB%E8%AE%BE%E8%AE%A1%E7%94%A8%E6%9D%A5,%E7%84%A6%E7%82%B9%E6%98%AF%E6%95%B0%E6%8D%AE%E7%9A%84%E5%A4%96%E8%A7%82%E3%80%82&text=XML%20%E4%B8%8D%E6%98%AF%E8%A6%81%E6%9B%BF%E6%8D%A2HTML,%E9%9B%86%E4%B8%AD%E4%BA%8E%E6%95%B0%E6%8D%AE%E7%9A%84%E5%86%85%E5%AE%B9%E3%80%82)
@@ -43,8 +39,6 @@ print(result.decode('utf-8'))
      </li></ul>
  </div></body></html>
 '''
-
-"""
 
 ###########################################################
 
@@ -67,17 +61,20 @@ result = html.xpath('//*')
 
 # 获取所有的 li 节点
 result_li = html.xpath('//li')
-# print(result_li)
-# print(result_li[0])
-# print(result_li[0].text)
-# print(result_li[0].label)
+print("\nresult_li:", result_li)
+print("result_li[0]:", result_li[0])
+print(etree.tostring(result_li[0]))
+# 这样是不行的，因为 li 并没有文字， li 的子节点 a 才有
+# print("result_li[0].text:", result_li[0].text)
+# print("result_li[0].label:", result_li[0].label)
+print()
 
 #### 子节点
 
 # 获取所有 li 的子节点 a
 result_li_a = html.xpath('//li/a')
 # print(result_li_a)
-# print(result_li_a[0].text)
+print(result_li_a[0].text)
 
 # 如果这样子就什么也读不出来（返回空列表），因为 a 虽然是 ul 的子孙节点但不是直接的子节点
 result_ul_a = html.xpath('//ul/a')
@@ -159,7 +156,7 @@ html = etree.HTML(text)
     # 更多见[XPath 运算符 | 菜鸟教程](https://www.runoob.com/xpath/xpath-operators.html)
     # ⚠️属性一长就得留意不要漏了右边的括号了！！！
 result = html.xpath('//li[contains(@class, "li") and @name="item"]/a/text()')
-# print(result)
+print('//li[contains(@class, "li") and @name="item"]/a/text()', result)
 
 #### 按序选择
 
