@@ -80,6 +80,8 @@ q.send_keys(Keys.RETURN)
 
 # 关掉页面（仅限于最初调用 .get 方法打开的那个页面）
 driver.close()
+# 退出 driver 并且关掉所有窗口
+driver.quit()
 
 # COOL!!!
 
