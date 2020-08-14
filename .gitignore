@@ -55,3 +55,5 @@ libraries/pandas/titanic.csv
 libraries/pandas/titanic.xlsx
 scraper/lagou_data.xlsx
 libraries/psychopy/lastParams.pickle
+libraries/psychopy/jwp2020_Aug_14_1624.csv
+libraries/psychopy/jwp2020_Aug_14_1624.psydat
