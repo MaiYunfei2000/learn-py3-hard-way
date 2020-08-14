@@ -39,7 +39,7 @@ print(type(df.describe()))
 print()
 
 
-# 02
+# 02 How do I read and write tabular data?
 # https://pandas.pydata.org/docs/getting_started/intro_tutorials/01_table_oriented.html#min-tut-01-tableoriented
 
 # load the csv file 
@@ -65,3 +65,22 @@ print()
 
 # technical summary of a DataFrame
 print(titanic.info())
+
+
+# 03 How do I select a subset of a DataFrame?
+
+ages = titanic["Age"]
+# https://pandas.pydata.org/docs/reference/api/pandas.Series.head.html?highlight=head#pandas.Series.head
+print("\nages:", ages.head())
+print(ages)
+
+print()
+
+print(titanic["Age"].shape)
+
+print("Age and Sex:", titanic[["Age", "Sex"]]) # double brackets!
+
+print()
+
+above_35 = titanic[titanic["Age"] > 35]
+print("above_35:", above_35.head())
