@@ -54,3 +54,4 @@ libraries/requests/example/test.csv
 libraries/pandas/titanic.csv
 libraries/pandas/titanic.xlsx
 scraper/lagou_data.xlsx
+libraries/psychopy/lastParams.pickle
