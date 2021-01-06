@@ -57,3 +57,6 @@ scraper/lagou_data.xlsx
 libraries/psychopy/lastParams.pickle
 libraries/psychopy/jwp2020_Aug_14_1624.csv
 libraries/psychopy/jwp2020_Aug_14_1624.psydat
+*.xlsx
+*.psyexp
+libraries/psychopy/001_201228_bilingual_stroop/bilingualStroop_lastrun.py
