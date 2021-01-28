@@ -15,25 +15,25 @@ grating.draw()
 fixation.draw()
 myWindow.update()
 
-# pause, so you get a chance to see it!
-# [psychopy.core - basic functions (clocks etc.) — PsychoPy v2020.2](https://www.psychopy.org/api/core.html#psychopy.core.wait)
-core.wait(5.0)
-
-# for frameN in range(200): # run for 200 frames
-# or you can:
-while True:
-    grating.setPhase(0.05, '+') # advance phase by 0.05 of a cycle
-    grating.draw()
-    fixation.draw()
-    myWindow.update()
-    
-    # https://www.psychopy.org/api/event.html#psychopy.event.getKeys
-    key = event.getKeys() # Let's see what happens
-    if len(key) > 0:
-        print(key) # cool
-        break
-    event.clearEvents()
-
-# cleanup
-myWindow.close()
-core.quit()
+# # pause, so you get a chance to see it!
+# # [psychopy.core - basic functions (clocks etc.) — PsychoPy v2020.2](https://www.psychopy.org/api/core.html#psychopy.core.wait)
+# core.wait(5.0)
+#
+# # for frameN in range(200): # run for 200 frames
+# # or you can:
+# while True:
+#     grating.setPhase(0.05, '+') # advance phase by 0.05 of a cycle
+#     grating.draw()
+#     fixation.draw()
+#     myWindow.update()
+#
+#     # https://www.psychopy.org/api/event.html#psychopy.event.getKeys
+#     key = event.getKeys() # Let's see what happens
+#     if len(key) > 0:
+#         print(key) # cool
+#         break
+#     event.clearEvents()
+#
+# # cleanup
+# myWindow.close()
+# core.quit()

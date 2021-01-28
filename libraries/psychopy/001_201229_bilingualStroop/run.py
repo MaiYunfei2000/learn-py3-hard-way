@@ -2,6 +2,7 @@
 
 import random
 import pandas as pd
+from textwrap import dedent
 from datetime import datetime
 from psychopy import core, clock, data, gui, visual
 from psychopy.hardware import keyboard
@@ -43,21 +44,20 @@ print('正在初始化……')
    
 #### 安排刺激的所有水平
 
-blockLevels = pd.DataFrame({'language': ['English', 'Japanese']})
 condEN = pd.DataFrame({
     'word': ['red'] * 3 + ['green'] * 3 + ['blue'] * 3,
     'letterColor': ['red', 'green', 'blue'] * 3,
     'corrAns': ['left', 'down', 'right'] * 3,
     'congruent': [1, 0, 0, 0, 1, 0, 0, 0, 1]
 })
-condJP = pd.DataFrame({
-    'word': ['あか'] * 3 + ['みどり'] * 3 + ['あお'] * 3,
+condCH = pd.DataFrame({
+    'word': ['红'] * 3 + ['绿'] * 3 + ['蓝'] * 3,
     'letterColor': ['red', 'green', 'blue'] * 3,
     'corrAns': ['left', 'down', 'right'] * 3,
     'congruent': [1, 0, 0, 0, 1, 0, 0, 0, 1]
 })
 condEN.to_excel('condEN.xlsx')
-condJP.to_excel('condJP.xlsx')
+condCH.to_excel('condCH.xlsx')
 
 #### 初始化实验安排
 
@@ -84,7 +84,7 @@ def setWin():
                         fullscr=False,
                         screen=0, 
                         winType='pyglet', 
-                        allowGUI=True,
+                        # allowGUI=True,
                         monitor='testMonitor', 
                         color=[0,0,0], 
                         units='pix')
@@ -109,20 +109,33 @@ def drawFixation(size=1, lineWidth=5):
 
 # https://www.psychopy.org/api/hardware/keyboard.html
 # https://www.psychopy.org/_modules/psychopy/hardware/keyboard.html#Keyboard
-resp = keyboard.Keyboard(bufferSize=1)
+resp = keyboard.Keyboard() # bufferSize=1
 # create a default keyboard (e.g. to check for escape)
 defaultKb = keyboard.Keyboard()
 
 ##### 2. 开始实验程序
 
+group = expInfo['组别']
+langList = ['CH', 'EN'] if group=='A' else ['EN', 'CH']
 #### 一个个 block 地遍历
-for language in ['EN', 'JP']: # 之后再改这两个字符串
+for language in langList:
     
     #### 指导语
-    langNameCH = '英语' if language=='EN' else '日语'
-    text = f"""接下来会呈现系列单词，语言为【{langNameCH}】。\n你需要在单词出现后立即按键反应。\n\n红色字体按“←”\n绿色字体按“↓”\n蓝色字体按“→”\n\n请尽量又快又准地反应。\n\n按空格键开始程序。"""
+    langNameCH = '英语' if language=='EN' else '汉语'
+    instructionStr = dedent(f"""
+        接下来会呈现系列单词，语言为【{langNameCH}】。
+        你需要在单词出现后立即按键反应。
+
+        红色字体按“←”
+        绿色字体按“↓”
+        蓝色字体按“→”
+
+        请尽量又快又准地反应。
+        按空格键开始程序。
+        """)
+    # instructionStr = f"""接下来会呈现系列单词，语言为【{langNameCH}】。\n你需要在单词出现后立即按键反应。\n\n红色字体按“←”\n绿色字体按“↓”\n蓝色字体按“→”\n\n请尽量又快又准地反应。\n\n按空格键开始程序。"""
     instructionText = visual.TextStim(win,
-                                      text=text,
+                                      text=instructionStr,
                                       font='SimSun',
                                       height=25)
     instructionText.setAutoDraw(True)
@@ -153,19 +166,19 @@ for language in ['EN', 'JP']: # 之后再改这两个字符串
 
     exp.addLoop(trials)
     
+    print(trials)
+    
     #### 一个个 trial 地遍历
     for thisTrial in trials:
         # 从 trialHandler 中提取出每轮试次的信息
         """
         本实验中有：word, letterColor, corrAns, congruent 这些变量
         """
+        # print("thisTrial:", thisTrial)
         for varName in thisTrial:
             exec(varName + '= thisTrial[varName]')
         
         ### 初始化键盘
-        keypress = []
-        resp.rt = []
-        resp.keys = []
         resp.clearEvents(eventType='keyboard')
         
         ### 呈现 500ms 的注视点
@@ -175,7 +188,7 @@ for language in ['EN', 'JP']: # 之后再改这两个字符串
     
         ### 呈现文字刺激直到用户按键
         # 初始化文字刺激
-        font = 'Klee' if language=='JP' else 'Times New Roman'
+        font = 'SimSun' if language=='CH' else 'Times New Roman'
         textStim = visual.TextStim(win,
                                    text=word,
                                    color=letterColor,
@@ -183,11 +196,10 @@ for language in ['EN', 'JP']: # 之后再改这两个字符串
                                    height=100)
         textStim.setAutoDraw(True)
         # 呈现文字刺激
-        textStim.draw()
+        # textStim.draw()
         win.flip()
         # 开始计时
         timer = clock.Clock()
-        # TODO: 防止长按或狂按而疯狂往后跳
         # TODO: 搞明白 waitRelease 参数的作用
             # https://www.psychopy.org/api/hardware/keyboard.html
         looping = True
@@ -197,21 +209,18 @@ for language in ['EN', 'JP']: # 之后再改这两个字符串
             win.flip()
             if len(keypress):
                 rt = round(timer.getTime() * 1000)
-                keyName = keypress[-1].name
+                keyName = keypress[0].name
                 isCorrect = (keyName == corrAns)
                 textStim.setAutoDraw(False)
                 looping = False        
             if defaultKb.getKeys(["escape"]):
+                print("程序提前终止。")
                 core.quit()
         
         ### 记录数据
-        trials.addData('单词', word)
-        trials.addData('字符颜色', letterColor)
-        trials.addData('正确反应', corrAns)
-        trials.addData('是否一致', congruent)
-        trials.addData('反应时', rt)
-        trials.addData('实际按键', keyName)
-        trials.addData('是否正确', isCorrect)
+        trials.addData('RT', rt)
+        trials.addData('keyPress', keyName)
+        trials.addData('isCorrect', isCorrect)
         
         win.flip()
         core.wait(0.5)
@@ -228,5 +237,5 @@ print('=' * 50)
 print('实验进程已结束。')
 print('=' * 50)
 
-win.close()
+# win.close()
 core.quit()

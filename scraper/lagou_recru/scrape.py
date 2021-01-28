@@ -11,15 +11,16 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.webdriver.support import expected_conditions as EC
 
 # ========================================
 # 初始化
 # ========================================
 
-# 查找的职业关键词
-job_key = 'Python'
-# job_key = input("请输入职业的关键词（可中文）：")
+# # 查找的职业关键词
+job_key = '二次元'
+# # job_key = input("请输入职业的关键词（可中文）：")
 
 # 获取当前时间
 today_time_str = str(datetime.today())[:16]
@@ -46,16 +47,16 @@ print("（标签页的圈圈转完才意味着加载完毕；视网络条件，�
 driver.get(f"https://www.lagou.com/jobs/list_{job_key}/")
 print("\n网页加载完毕。请先登录。")
 
-# 等待这个莫名其妙的红包广告出现
-element = WebDriverWait(driver, timeout=10).until(
-        EC.presence_of_element_located((By.XPATH, '/html/body/div[9]/div/div[2]')))
-# 然后把这莫名其妙的红包广告给点掉（点击“给也不要”按钮）
-closing_button = driver.find_element_by_xpath('/html/body/div[9]/div/div[2]')
-closing_button.click()
+# # 等待这个莫名其妙的红包广告出现
+# element = WebDriverWait(driver, timeout=10).until(
+#         EC.presence_of_element_located((By.XPATH, '/html/body/div[9]/div/div[2]')))
+# # 然后把这莫名其妙的红包广告给点掉（点击“给也不要”按钮）
+# closing_button = driver.find_element_by_xpath('/html/body/div[9]/div/div[2]')
+# closing_button.click()
 
-# 点开登录界面
-login_access = driver.find_element_by_xpath('//*[@id="lg_tbar"]/div/div[2]/ul/li[3]/a')
-login_access.click()
+# # 点开登录界面 ⚠️节点已变更 需重做
+# login_access = driver.find_element_by_xpath('//*[@id="lg_tbar"]/div/div[2]/ul/li[3]/a')
+# login_access.click()
 
 def normal_login():
     """
@@ -106,15 +107,7 @@ def qq_login():
 
 probe = input("请手动登录，然后输入任意字符以继续。")
 
-# 获取招聘信息的总页数
-page_num = driver.find_element_by_xpath('//*[@id="s_position_list"]/div[2]/div/span[5]').text
-page_num = int(page_num)
-
-# ========================================
-# 爬取所有信息
-# ========================================
-
-def scrape_and_process(inner_interval=0.05, outer_interval=1):
+def scrape_and_process(key, silent=True, inner_interval=0.05, outer_interval=1):
     """
     input:
           inner_interval(int): time interval of scraping an element
@@ -122,6 +115,11 @@ def scrape_and_process(inner_interval=0.05, outer_interval=1):
     output:
           df(pandas.DataFrame): cummulated information
     """
+    driver.get(f"https://www.lagou.com/jobs/list_{key}/")
+
+    # 获取招聘信息的总页数
+    page_num = driver.find_element_by_xpath('//*[@id="s_position_list"]/div[2]/div/span[5]').text
+    page_num = int(page_num)
 
     list_job_name = []
     list_city = []
@@ -157,8 +155,14 @@ def scrape_and_process(inner_interval=0.05, outer_interval=1):
 
             # 拆解字符串
             text_list = overall_text.split('\n')
+            
+            try:
+                text_list.remove('前程无忧')
+            except ValueError:
+                pass
 
-            print(text_list)
+            if not silent:
+                print(text_list)
 
             """
             原始信息：
@@ -186,16 +190,24 @@ def scrape_and_process(inner_interval=0.05, outer_interval=1):
             time_published = text_list[2] # 有待进一步处理为“绝对坐标”
 
             salary_et_al = ''.join(text_list[3].split(' /')).split(' ')
-            salary = salary_et_al[0]
-            experience = salary_et_al[1]
-            education = salary_et_al[2]
-
+            try:
+                salary = salary_et_al[0]
+                experience = salary_et_al[1]
+                education = salary_et_al[2]
+            except IndexError:
+                print('IndexError!!!\tsalary_et_al:', salary_et_al)
+                print('跳过该数据。')
+                
             company = text_list[4]
 
-            domain_et_al = text_list[5].split('/')
-            domain = domain_et_al[0].strip()
-            financing = domain_et_al[1].strip()
-            scale = domain_et_al[2].strip()
+            try:
+                domain_et_al = text_list[5].split('/')
+                domain = domain_et_al[0].strip()
+                financing = domain_et_al[1].strip()
+                scale = domain_et_al[2].strip()
+            except IndexError:
+                print('IndexError!!!\tdomain_et_al:', domain_et_al)
+                print('跳过该数据。')
 
             keyword = ';'.join(text_list[6].split(" "))
             try:
@@ -208,7 +220,7 @@ def scrape_and_process(inner_interval=0.05, outer_interval=1):
             try:
                 assert remark[0] == "“" and remark[-1] == "”"
             except AssertionError:
-                print(f"第{page_i}页第{element_i+1}行数据可能有问题")
+                print(f"第{page_i}页第{element_i+1}行数据可能有问题：remark={remark}")
                 remark = "【可能异常】" + remark
 
 
@@ -240,7 +252,13 @@ def scrape_and_process(inner_interval=0.05, outer_interval=1):
         next_page = driver.find_element_by_xpath('//*[@id="s_position_list"]/div[2]/div/span[@action="next"]')
 
         # 点击“下一页”按钮
-        next_page.click()
+        try:
+            next_page.click()
+        except ElementClickInterceptedException:
+            # 把这莫名其妙的红包广告给点掉（点击“给也不要”按钮）
+            close_red_packet = driver.find_element_by_xpath('//div[@class="body-btn"]')
+            close_red_packet.click()
+            next_page.click()
 
         time.sleep(outer_interval)
 
@@ -266,15 +284,28 @@ def scrape_and_process(inner_interval=0.05, outer_interval=1):
 
     return df
 
-# ========================================
-# 导出为 Excel 文件
-# ========================================
+def run(key=job_key):
+    
+    if type(key) == str:
+        key = [key]
 
-# df = scrape_and_process()
-#
-# print("爬取结果：\n", df)
-#
-# df.to_excel('lagou_data.xlsx', sheet_name=f'{job_key}', index=False)
+    for k in key:
+        
+        # ========================================
+        # 爬取所有信息
+        # ========================================
+        
+        df = scrape_and_process(k, silent=False)
+        
+        # ========================================
+        # 导出为 Excel 文件
+        # ========================================
+        
+        print("df:\n", df)
+        df.to_excel(f'lagou_{k}.xlsx', sheet_name=f'{k}', index=False)
+
+job_key = ['数据分析']
+run(job_key)
 
 # ========================================
 # 结束程序
